@@ -1,377 +1,335 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملف الإنجاز | الجودة والإنتاجية - ندى المجيرش</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <title>مسار الإبداع والابتكار — ملف إنجاز ندى المجيرش</title>
-
-  <!-- SEO -->
-  <meta name="description" content="ملف إنجاز مسار الإبداع والابتكار: شواهد عملية، مبادرات نوعية، ومشروعات تعليمية لندى المجيرش — ١٤٤٧هـ."/>
-  <meta name="keywords" content="ندى المجيرش, ملف إنجاز, فيزياء, تعليم, مدارس التربية النموذجية, الإبداع والابتكار, الذكاء الاصطناعي في التعليم"/>
-  <meta name="theme-color" content="#0E294A"/>
-
-  <!-- Social Preview -->
-  <meta property="og:title" content="مسار الإبداع والابتكار — ملف إنجاز"/>
-  <meta property="og:description" content="ممارسات تعليمية مبتكرة، مبادرات، ومشروعات مرتبطة بالأثر."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="https://k.top4top.io/p_359656o321.png"/>
-
-  <link rel="icon" href="https://b.top4top.io/p_3603wgsjg1.png type="image/png"/>
-
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;700;800;900&display=swap" rel="stylesheet"/>
-
-  <style>
-    :root{
-      --color-primary:#A0824E;     /* ذهبي */
-      --color-secondary:#0E294A;   /* كحلي */
-      --color-bg:#F7F5F2;          /* أوف وايت */
-      --font-cairo:'Cairo',sans-serif;
-      --font-amiri:'Amiri',serif;
-    }
-    html{scroll-behavior:smooth}
-    body{font-family:var(--font-cairo);background:var(--color-bg);color:#1f2937;line-height:1.85}
-
-    /* عناوين مرنة */
-    h1{font-size:clamp(1.9rem,3.6vw,2.8rem);letter-spacing:.2px}
-    h2{font-size:clamp(1.4rem,2.6vw,2rem)}
-    h3{font-size:clamp(1.15rem,2vw,1.4rem)}
-    .lead{font-size:clamp(1rem,1.25vw,1.1rem)}
-
-    /* بسم الله */
-    .bismillah{font-family:var(--font-amiri);color:var(--color-secondary)}
-
-    /* بطاقة مذهبة */
-    .golden-card{
-      background:#fff;border-radius:1rem;padding:1.15rem;
-      border-inline-start:8px solid var(--color-primary);
-      box-shadow:0 6px 16px rgba(0,0,0,.06);
-      transition:transform .25s ease, box-shadow .25s ease;
-    }
-    .golden-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,0,0,.10)}
-
-    /* شارات */
-    .badge{display:inline-block;padding:.25rem .65rem;border-radius:9999px;font-size:.8rem;font-weight:800}
-    .badge-pink{background:#fbcfe8;color:#9d174d;border:1px solid #9d174d}
-    .badge-blue{background:#dbeafe;color:#1e40af}
-    .badge-amber{background:#fef3c7;color:#92400e}
-    .badge-green{background:#d1fae5;color:#065f46}
-    .badge-navy{background:#e5e7eb;color:#111827;border:1px solid #111827}
-
-    /* زر دائري */
-    .btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:9999px;padding:.75rem 1.2rem;font-weight:800}
-    .btn-primary{background:var(--color-secondary);color:#fff;border:2px solid var(--color-secondary)}
-    .btn-primary:hover{background:var(--color-primary);border-color:var(--color-primary)}
-    .btn-light{background:#eef2f7;color:#111827;border:2px solid #eef2f7}
-
-    /* حاوية عامة */
-    .container{max-width:1200px;margin-inline:auto;padding-inline:clamp(12px,3vw,32px)}
-    .section{padding-top:3.2rem}
-
-    /* هيدر مثبت + قائمة منسدلة */
-    .sticky-nav{position:sticky;top:0;z-index:50;background:#ffffffd9;backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid #e5e7eb}
-    .dropdown:focus-within .menu{display:block}
-    .menu{display:none;position:absolute;inset-inline-start:0;top:100%;min-width:260px;background:#fff;border:1px solid #e5e7eb;border-radius:.75rem;box-shadow:0 12px 24px rgba(0,0,0,.10);padding:.5rem}
-    .menu a{display:block;padding:.55rem .75rem;border-radius:.55rem;font-weight:800}
-    .menu a:hover{background:#f9fafb;color:#0e294a}
-
-    /* إبراز كلمات */
-    .mark{font-weight:900;color:#0E294A}
-    .hilite{font-weight:900;color:#A0824E}
-
-    /* CTA ثابت */
-    .floating-cta{position:fixed;inset-inline-start:1rem;bottom:1rem;z-index:40}
-    @media (max-width:480px){.floating-cta{inset-inline-start:.75rem;bottom:.75rem}}
-  </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                        heading: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#0F172A',
+                        navyLight: '#1E293B',
+                        gold: '#C5A059',
+                        goldLight: '#E2C792',
+                        bglight: '#F8FAFC',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F8FAFC; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 10px; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-<body class="antialiased">
+<body>
+    <div id="root"></div>
 
-  <!-- الهيدر / الشعار -->
-  <header class="sticky-nav">
-    <div class="container py-2">
-      <div class="flex items-center justify-between gap-3">
-        <!-- شعاريـن متجاوران -->
-        <div class="flex items-center gap-3">
-          <img src="https://b.top4top.io/p_3603wgsjg1.png" alt="شعار مدارس التربية النموذجية" class="h-10 w-auto object-contain"/>
-          <img src="https://k.top4top.io/p_359656o321.png" alt="شعار الشركة (بدّليه لاحقًا)" class="h-10 w-auto object-contain"/>
-        </div>
+    <script type="text/babel">
+        const { useState } = React;
 
-        <!-- اسم المدرسة + الشركة -->
-        <div class="text-center hidden md:block">
-          <div class="font-extrabold text-[var(--color-secondary)]">مدارس التربية النموذجية — ثانوي الريان</div>
-          <div class="text-sm opacity-80">الشركة الوطنية للتربية والتعليم</div>
-        </div>
+        const portfolioData = [
+            {
+                section: "التوجه الاستراتيجي",
+                items: [
+                    { 
+                        id: "2.1", title: "الرؤية الطموحة والأهداف", 
+                        concept: "بناء رؤية مهنية واضحة ومستدامة تتوافق تماماً مع التوجه الاستراتيجي للمدارس.",
+                        application: "الريادة في تقديم تعليم فيزيائي متمحور حول الطالبة، يبني مهارات البحث والابتكار، ويُعد جيلاً مفكراً قادراً على قيادة ذاته ووطنه بمسؤولية، معتزاً بهويته وتراثه الأصيل، ليكون جزءاً من مرجعية وطنية رائدة.", 
+                        links: [{ label: "وثيقة الرؤية المعتمدة.pdf", url: "الرؤية_والرسالة.pdf" }] 
+                    },
+                    { 
+                        id: "2.2", title: "الرسالة والأهداف المحددة", 
+                        concept: "تحويل الرؤية إلى رسالة تشغيلية يومية تضمن نواتج تعلم عالية الجودة.",
+                        application: "خلق بيئة تعليمية تشاركية وآمنة، تعتمد على التطوير المستدام وتوظيف التقنية. ألتزم بترسيخ الانضباط، والعمل الجماعي، والشفافية لبناء شخصية الطالبة علمياً ومهارياً.", 
+                        links: [{ label: "وثيقة الرسالة المعتمدة.pdf", url: "الرؤية_والرسالة.pdf" }] 
+                    }
+                ]
+            },
+            {
+                section: "التخطيط والأنظمة",
+                items: [
+                    { 
+                        id: "2.3", title: "خطة العمل المرنة", 
+                        concept: "تصميم هيكلة تخطيط متعددة الأبعاد تستوعب المتغيرات الطارئة دون الإخلال بالمنهج.",
+                        application: "توزيع فصلي للمنهج، يتبعه خطط أسبوعية تفصيلية مبنية على تصنيف بلوم، يتكامل مع مبادرة 'نفكر بعمق'. ولضمان المرونة التامة، تم تصميم خطط بديلة لتفعيل حصص الاحتياط.", 
+                        links: [
+                            { label: "توزيع الفصلين.pdf", url: "الترم_الاول_2.pdf" },
+                            { label: "الخطة التفصيلية.pdf", url: "الخطة_التفصيلية_2.pdf" },
+                            { label: "مجلد نفكر بعمق", url: "https://drive.google.com/drive/folders/180Io-M2v3fBxzMythe4Dlxycw8nN9tnH" }
+                        ]
+                    }
+                ]
+            },
+            {
+                section: "حل المشكلات والبحوث",
+                items: [
+                    { 
+                        id: "2.4", title: "بحث مشكلات العمل والتغلب عليها", 
+                        concept: "رصد التحديات الأكاديمية والتنظيمية وابتكار حلول جذرية قابلة للقياس.",
+                        application: "معالجة هدر وقت التخطيط بابتكار منصة 'أثر' (ذكاء اصطناعي). ومعالجة فوضى الاحتياط بحقيبة 'كانفا'. وللجانب الأكاديمي، تم تفعيل تدريس الأقران والتقييم الذاتي لتبسيط المفاهيم المجردة.", 
+                        links: [
+                            { label: "تقرير منصة أثر.pdf", url: "تقرير_حل_مشكلة_تربوية_١.pdf" },
+                            { label: "تقييم الطالبات لأنفسهم", url: "https://drive.google.com/drive/folders/166FyHf1F4DmmIu3BwyAe-VlfPc4m75yc" }
+                        ]
+                    },
+                    { 
+                        id: "2.5", title: "توظيف البحوث والدراسات", 
+                        concept: "الاستناد إلى المرجعيات العلمية الموثوقة لتطوير الممارسات الصفية.",
+                        application: "تطبيق استراتيجية الاستقصاء المبني على المحاكاة الرقمية (SBI) استناداً إلى دراسات PhET لتصحيح المفاهيم الفيزيائية البديلة.", 
+                        links: [{ label: "تقرير توظيف البحوث.pdf", url: "تقرير_توظيف_البحوث_والدراسات.pdf" }] 
+                    }
+                ]
+            },
+            {
+                section: "النمو المهني والشراكات",
+                items: [
+                    { 
+                        id: "2.6", title: "التفاعل مع مجتمعات التعلم", 
+                        concept: "العمل التشاركي مع الزميلات لتوحيد المعايير وتبادل الخبرات.",
+                        application: "تفعيل مجتمعات التعلم المهنية (PLC) لدمج منحى STEM في تدريس الفيزياء ومناقشة القضايا التربوية لتحسين المخرجات.", 
+                        links: [{ label: "محضر اجتماع PLC المعتمد.pdf", url: "محضر_اجتماع_PLC_المعتمد.pdf" }] 
+                    },
+                    { 
+                        id: "2.7", title: "تحديد الاحتياجات التدريبية", 
+                        concept: "التخطيط الاستباقي للنمو المهني بناءً على متطلبات الميدان التعليمي.",
+                        application: "بناء خطة تطوير مهني للعام 1447هـ تركز على الذكاء الاصطناعي، المعامل الافتراضية، ومشاريع STEM.", 
+                        links: [{ label: "خطة التطوير المهني.pdf", url: "خطة_التطوير_المهني.pdf" }] 
+                    },
+                    { 
+                        id: "2.8", title: "حضور البرامج التدريبية", 
+                        concept: "الاستمرارية في النمو المعرفي واكتساب مهارات تدريسية وتقنية حديثة.",
+                        application: "حضور دورات وبرامج متخصصة مكثفة خلال الفصل الحالي تنعكس مباشرة على جودة الأداء الصفي.", 
+                        links: [{ label: "سجل الدورات (الفصل الحالي)", url: "https://drive.google.com/drive/folders/1xya-WXw4wqnmvEluEnV44HTmXL0ANHvf" }] 
+                    }
+                ]
+            },
+            {
+                section: "قياس الأثر (الإدارة)",
+                items: [
+                    { 
+                        id: "2.9", title: "استطلاع آراء المستفيدين", 
+                        concept: "قياس مؤشرات الرضا لتوظيف التغذية الراجعة في تحسين الأداء.",
+                        application: "توزيع استبانات دورية للمتعلمين وأولياء الأمور، وتحليل النتائج لرفع مستوى الرضا وتحسين المخرجات.", 
+                        links: [{ label: "استبانة_المستفيدين.pdf", url: "استبانة_المستفيدين.pdf" }] 
+                    },
+                    { 
+                        id: "2.10", title: "تحليل الأداء الوظيفي وتوظيفه", 
+                        concept: "التقييم الذاتي والمؤسسي لتحديد نقاط القوة وفرص التحسين المستمر.",
+                        application: "إعداد دراسة تحليلية لنتائج الأداء الوظيفي، وبناء خطة إجرائية لمعالجة الملاحظات وتطوير نقاط القوة بشكل مستدام.", 
+                        links: [
+                            { label: "التحليل_السنوي.pdf", url: "التحليل_السنوي.pdf" },
+                            { label: "الخطة_الاجرائية.pdf", url: "الخطة_الاجرائية.pdf" }
+                        ] 
+                    }
+                ]
+            },
+            {
+                section: "المكتبات والمبادرات",
+                items: [
+                    { 
+                        id: "2.12", title: "تفعيل المكتبات الإلكترونية", 
+                        concept: "تحويل الطالبة من متلقية إلى باحثة ومنتجة للمعرفة.",
+                        application: "تحفيز الطالبات للبحث الموجه في المكتبات الرقمية وبوابة عين لإنتاج أبحاث علمية رصينة (نيوتن، أينشتاين).", 
+                        links: [{ label: "أبحاث الطالبات المعتمدة", url: "https://drive.google.com/drive/folders/1MkY9Zf_SrFEWRzH7IDQB3QmF-Dp_2zIe" }] 
+                    },
+                    { 
+                        id: "2.13", title: "التخطيط في ضوء نتاجات التعلم", 
+                        concept: "مواءمة البيئة التعليمية مع النتاجات المستهدفة لتسهيل التطبيق العملي.",
+                        application: "مبادرة حوكمة وتنظيم المعمل الفيزيائي: تصميم نظام أرشفة رقمي وجرد ذكي للأدوات لتسريع الوصول وتقليل الهدر.", 
+                        links: [{ label: "تقرير وفهرس المعمل", url: "https://drive.google.com/drive/folders/15zqvdJVEFKhfcfu5UJ2skR14o7wS1rqD" }] 
+                    }
+                ]
+            },
+            {
+                section: "تقييم اللجنة الفرعية",
+                items: [
+                    { 
+                        id: "2.14", title: "استخدام أساليب تعلم حديثة", 
+                        concept: "الابتعاد عن التلقين وتفعيل استراتيجيات تضمن المشاركة والفهم العميق.",
+                        application: "استخدام استراتيجيات نشطة مثل الاستقصاء المبني على المحاكاة والخرائط المفاهيمية.", 
+                        links: [{ label: "بطاقات الاستراتيجيات والدروس", url: "https://drive.google.com/drive/folders/1oGDnB3IhAbMBEPHvg4dZbLriOPWrj8-T" }] 
+                    },
+                    { 
+                        id: "2.15", title: "ربط المادة بالمواد الأخرى", 
+                        concept: "إظهار تكامل العلوم وربط المفاهيم الفيزيائية بالواقع الهندسي والطبي.",
+                        application: "توجيه الطالبات لإنتاج مشاريع علمية تدمج الفيزياء بالهندسة والتقنية (مثل مشروع الفيزياء النووية).", 
+                        links: [{ label: "مشاريع الطالبات العلمية", url: "https://drive.google.com/drive/folders/1-4pthTfiLT4NkEIDmB0CAxCUIQiXfhoU" }] 
+                    },
+                    { 
+                        id: "2.16", title: "تبسيط المعلومات", 
+                        concept: "مراعاة المرحلة العمرية والتدرج في طرح المفاهيم للوصول لمستويات عليا.",
+                        application: "تصميم أنشطة تنقل الطالبة تدريجياً إلى التحليل والتركيب وفق تصنيف بلوم.", 
+                        links: [{ label: "مهارات التفكير العليا", url: "https://drive.google.com/drive/folders/180Io-M2v3fBxzMythe4Dlxycw8nN9tnH" }] 
+                    },
+                    { 
+                        id: "2.17", title: "توظيف الأنشطة التعليمية", 
+                        concept: "تفعيل الجانب الحركي والذهني داخل وخارج الغرفة الصفية.",
+                        application: "تنفيذ أنشطة صفية تحقق مشاركة فعالة لجميع المتعلمين كنشاط السرعة المتجهة.", 
+                        links: [{ label: "الأنشطة الصفية", url: "https://drive.google.com/drive/folders/1oGDnB3IhAbMBEPHvg4dZbLriOPWrj8-T" }] 
+                    },
+                    { 
+                        id: "2.18", title: "خبرات صفية ولا صفية", 
+                        concept: "تنمية الشعور بالمسؤولية الذاتية وتفعيل دور الطالبة كمعلمة.",
+                        application: "تفعيل المختبر المرئي وتدريس الأقران لدمج الطالبات عملياً في شرح وتوثيق التجارب.", 
+                        links: [{ label: "تجارب وشرح الطالبات", url: "https://drive.google.com/drive/folders/12NXTdmhSWuTW6TvjOnhGZZ_ieedcEhZo" }] 
+                    },
+                    { 
+                        id: "2.19", title: "الإلمام بالفروق الفردية", 
+                        concept: "تصميم التدريس ليتوافق مع تنوع مستويات وأنماط تعلم الطالبات.",
+                        application: "توفير مهام متفاوتة التحدي وتخصيص أنشطة إثرائية وأخرى علاجية ضمن خطة 'نفكر بعمق'.", 
+                        links: [{ label: "ملف الفروق الفردية.pdf", url: "ملف_الفروق_الفردية.pdf" }] 
+                    },
+                    { 
+                        id: "2.20", title: "تقديم برامج تدريبية", 
+                        concept: "نقل الأثر والخبرة المهنية للزميلات في التخصص والمدرسة.",
+                        application: "إعداد وتقديم ورش عمل تطبيقية متخصصة كدورة الذكاء الاصطناعي في كانفا.", 
+                        links: [{ label: "البرامج المقدمة", url: "https://drive.google.com/drive/folders/1EfBIqZW5_pwEjZFMVG7rWWMJA2To7Gdw" }] 
+                    }
+                ]
+            }
+        ];
 
-        <!-- القائمة المنسدلة -->
-        <nav class="relative dropdown">
-          <button class="btn btn-primary" aria-haspopup="true" aria-expanded="false">الأقسام ▾</button>
-          <div class="menu" role="menu" aria-label="قائمة الأقسام">
-            <a href="#intro">التعريف والهدف</a>
-            <a href="#stats">أرقام الأثر</a>
-            <a href="#lessons">الدروس النموذجية، ومهارات التفكير العليا</a>
-            <a href="#plans">الخطط الدراسية الفصلية (الخطة الأسبوعية)</a>
-            <a href="#initiatives">المبادرات النوعية (٦ مبادرات)</a>
-            <a href="#projects">المشاريع العلمية الإبداعية</a>
-            <a href="#dev">التطوير المهني والشراكات</a>
-            <a href="#parents">التواصل مع أولياء الأمور</a>
-            <a href="#supervision">التقييم الإداري</a>
-            <a href="#competitions">المسابقات</a>
-            <a href="#activities">الأنشطة</a>
-            <a href="#contact">تواصل</a>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </header>
+        function Portfolio() {
+            // البند الفعال الافتراضي هو أول بند (2.1)
+            const [activeItem, setActiveItem] = useState(portfolioData[0].items[0]);
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  <!-- رأس الصفحة -->
-  <section class="container pt-8">
-    <p class="bismillah text-center font-bold mb-4" style="font-size:clamp(1.8rem,3.4vw,2.8rem)">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
+            return (
+                <div className="flex flex-col md:flex-row min-h-screen">
+                    
+                    {/* زر القائمة للجوال */}
+                    <button 
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        className="md:hidden fixed bottom-6 right-6 z-50 bg-gold text-white p-4 rounded-full shadow-2xl"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
 
-    <div class="bg-gradient-to-l from-[var(--color-secondary)] to-gray-800 text-white px-4 py-4 rounded-xl shadow-2xl text-center border-b-4 border-[var(--color-primary)]">
-      <h1 class="mb-1">مسار <span class="hilite">الإبداع والابتكار</span> في التدريس</h1>
-      <div class="opacity-90 font-bold">«إن الله يحب إذا عمل أحدكم عملاً أن يُتقنه»</div>
-    </div>
-  </section>
+                    {/* الشريط الجانبي الفهرس */}
+                    <aside className={`w-64 lg:w-80 bg-navy text-white flex flex-col fixed inset-y-0 right-0 z-40 transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:translate-x-0 transition-transform duration-300 ease-in-out shadow-2xl`}>
+                        <div className="p-5 text-center border-b border-white/10 mt-10 md:mt-0 bg-navyLight">
+                            <h2 className="font-heading text-xl font-black text-gold mb-1">المجال الثاني</h2>
+                            <p className="text-xs font-bold opacity-80">الجودة والإنتاجية</p>
+                        </div>
+                        <nav className="flex-1 overflow-y-auto p-4 space-y-6">
+                            {portfolioData.map((category, idx) => (
+                                <div key={idx} className="mb-2">
+                                    <h3 className="text-gold font-bold mb-2 text-sm uppercase px-2">{category.section}</h3>
+                                    <ul className="space-y-1 pr-2 border-r-2 border-white/10">
+                                        {category.items.map((item) => {
+                                            const isActive = activeItem.id === item.id;
+                                            return (
+                                                <li key={item.id}>
+                                                    <button 
+                                                        onClick={() => {setActiveItem(item); setIsMenuOpen(false); window.scrollTo(0,0);}}
+                                                        className={`w-full text-right block py-2 px-3 text-sm font-semibold rounded transition-all ${isActive ? 'bg-white/10 text-gold border-r-2 border-gold' : 'text-gray-300 hover:text-white hover:bg-white/5'}`}
+                                                    >
+                                                        <span className={`font-bold ml-2 ${isActive ? 'text-white' : 'text-gold'}`}>{item.id}</span>
+                                                        {item.title}
+                                                    </button>
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
+                            ))}
+                        </nav>
+                    </aside>
 
-  <main class="container py-8">
-    <!-- بطاقة تعريف -->
-    <section id="intro" class="golden-card prose" aria-labelledby="hero-title">
-      <h2 id="hero-title" class="mb-2 text-[var(--color-secondary)] font-extrabold border-b-4 border-[var(--color-primary)] pb-2 inline-block">
-        التعريف والهدف — ١٤٤٧هـ
-      </h2>
-      <p class="lead font-semibold">
-        أنا <span class="mark">ندى محمد سعد المجيرش</span>، معلمة فيزياء بالمرحلة الثانوية (ثانوي الريان).  
-        أقدّم ممارسة تعليمية تتمحور حول <span class="hilite">الإبداع</span> وتحويل المفاهيم المجردة إلى
-        <span class="mark">منتجات تعلّم قابلة للقياس</span>، مع توظيف <span class="mark">الذكاء الاصطناعي</span> في التخطيط، 
-        وتفعيل بيئات صفية تعزز التفكير العالي وصناعة أثر تعليمي ملموس بجودة واتساق.
-      </p>
-      <p class="text-sm text-gray-500 mt-3">كل الأزرار تفتح الشواهد مباشرة داخل Google Drive.</p>
-    </section>
+                    {/* المحتوى الرئيسي */}
+                    <main className="flex-1 flex flex-col md:mr-64 lg:mr-80 w-full min-h-screen bg-bglight">
+                        
+                        {/* الترويسة العلوية - تم تصغيرها وجعلها أهدى للعين */}
+                        <header className="bg-white p-3 md:p-4 shadow-sm border-b-2 border-gold sticky top-0 z-30">
+                            <div className="max-w-4xl mx-auto flex flex-row justify-between items-center gap-2">
+                                <img src="https://b.top4top.io/p_3603wgsjg1.png" alt="شعار المدارس" className="h-10 md:h-12 object-contain" />
+                                <div className="text-center flex-1">
+                                    <h1 className="font-heading text-xl md:text-2xl font-black text-navy mb-0.5">ندى محمد المجيرش</h1>
+                                    <p className="text-xs md:text-sm font-bold text-gray-600 flex justify-center items-center gap-2 flex-wrap">
+                                        معلمة فيزياء - المرحلة الثانوية
+                                        <span className="hidden md:inline text-gray-300">|</span>
+                                        <span className="text-gold">NE231009</span>
+                                    </p>
+                                </div>
+                                <img src="https://k.top4top.io/p_359656o321.png" alt="شعار الشركة" className="h-10 md:h-12 object-contain" />
+                            </div>
+                        </header>
 
-    <!-- أرقام -->
-    <section id="stats" class="section">
-      <h2 class="mb-4 text-[var(--color-secondary)] font-extrabold">أرقام تُجسّد الأثر</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-        <div class="golden-card"><div class="text-3xl font-extrabold text-[var(--color-primary)]">٢٥+</div><div>منتج تعلّم إبداعي</div></div>
-        <div class="golden-card"><div class="text-3xl font-extrabold text-[var(--color-primary)]">٦</div><div>مبادرات نوعية منفصلة</div></div>
-        <div class="golden-card"><div class="text-3xl font-extrabold text-[var(--color-primary)]">٤</div><div>مسارات شراكات فاعلة</div></div>
-        <div class="golden-card"><div class="text-3xl font-extrabold text-[var(--color-primary)]">٩٨٪</div><div>اتساق التنفيذ</div></div>
-      </div>
-    </section>
+                        {/* منطقة العرض للبند النشط (Single View) */}
+                        <div className="p-4 md:p-8 max-w-4xl mx-auto w-full flex-1 flex flex-col justify-center">
+                            
+                            <div key={activeItem.id} className="fade-in bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex flex-col">
+                                
+                                {/* ترويسة البطاقة */}
+                                <div className="bg-navy p-5 text-white flex justify-between items-center border-b-4 border-gold">
+                                    <span className="font-black text-lg bg-white/10 px-4 py-1.5 rounded-lg">البند {activeItem.id}</span>
+                                    <h2 className="font-heading text-xl md:text-2xl font-bold text-right ml-2">{activeItem.title}</h2>
+                                </div>
+                                
+                                {/* محتوى البطاقة التفصيلي */}
+                                <div className="p-6 md:p-8 space-y-8 flex-1">
+                                    {/* المفهوم / الهدف */}
+                                    <div>
+                                        <h3 className="text-base font-black text-gold mb-3 flex items-center gap-2">
+                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"></path></svg>
+                                            المفهوم / الهدف
+                                        </h3>
+                                        <p className="text-gray-700 text-base font-semibold leading-relaxed bg-bglight p-5 rounded-xl border border-gray-100 shadow-sm">{activeItem.concept}</p>
+                                    </div>
+                                    
+                                    {/* آلية التطبيق */}
+                                    <div>
+                                        <h3 className="text-base font-black text-navyLight mb-3 flex items-center gap-2">
+                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M11.3 1.046A12.014 12.014 0 0010.3 1 12.015 12.015 0 009.29 1.046..."></path><path d="M19.342 9.406c..."></path><path fillRule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 9V6a1 1 0 112 0v4h2a1 1 0 110 2h-3a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
+                                            آلية التطبيق
+                                        </h3>
+                                        <p className="text-gray-600 text-base leading-relaxed p-2">{activeItem.application}</p>
+                                    </div>
+                                </div>
 
-    <!-- الدروس النموذجية + التفكير العليا -->
-    <section id="lessons" class="section" aria-labelledby="lessons-title">
-      <h2 id="lessons-title" class="mb-6 text-[var(--color-secondary)] font-extrabold">١) الدروس النموذجية، ومهارات التفكير العليا</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <article class="golden-card" aria-labelledby="model-lesson">
-          <span class="badge badge-pink mb-2">محور الإبداع</span>
-          <h3 id="model-lesson" class="mb-2 text-[var(--color-secondary)] font-bold">درس نموذجي — «تحوّلات الطاقة: تصميم أدوات تقييم وقياس الأثر»</h3>
-          <p class="mb-3">دمج تجارب مخبرية بتطبيقات حياتية، مع أدوات تقييم تبني التحليل والإبداع وتوثيق التقدم بالفيديو والمنتجات.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1zg5sXhUswcucF270idA9YlMF6RVuKbJc" target="_blank" rel="noopener">ملف الدرس (شواهد)</a>
-        </article>
+                                {/* منطقة الشواهد */}
+                                <div className="bg-gray-50 p-6 border-t border-gray-100 flex flex-wrap gap-3">
+                                    {activeItem.links.map((link, i) => (
+                                        <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-white border border-gray-200 text-navy hover:bg-gold hover:text-white hover:border-gold px-4 py-2.5 rounded-lg shadow-sm text-sm font-bold transition-all duration-200">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                            {link.label}
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
 
-        <article class="golden-card" aria-labelledby="hots-bloom">
-          <span class="badge badge-navy mb-2">التفكير العالي</span>
-          <h3 id="hots-bloom" class="mb-2 text-[var(--color-secondary)] font-bold">تطبيق تصنيف بلوم عملياً</h3>
-          <p class="mb-3">أسئلة وأنشطة تتجاوز التذكر إلى التحليل والتقييم والإنتاج المعرفي، مع شواهد مرئية للعمق المفاهيمي.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/180Io-M2v3fBxzMythe4Dlxycw8nN9tnH" target="_blank" rel="noopener">شواهد التفكير العليا</a>
-        </article>
-      </div>
-    </section>
+                    </main>
+                </div>
+            );
+        }
 
-    <!-- الخطط الدراسية الفصلية -->
-    <section id="plans" class="section" aria-labelledby="plans-title">
-      <h2 id="plans-title" class="mb-6 text-[var(--color-secondary)] font-extrabold">٢) الخطط الدراسية الفصلية (الخطة الأسبوعية)</h2>
-      <article class="golden-card">
-        <span class="badge badge-blue mb-2">تنظيم تعليمي</span>
-        <h3 class="mb-2 text-[var(--color-secondary)] font-bold">تقويم أسبوعي واضح للأهداف والموضوعات وأنشطة التقويم</h3>
-        <p class="mb-3">خطة تفصيلية لكل أسبوع تتضمن الموضوعات، أهداف التعلم، أساليب التقويم، والروابط المرتبطة بالأنشطة الصفية واللاصفية.</p>
-        <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1bbuGrVSPK77aNJ4Gw5l8gxjCMGKGM3Y-" target="_blank" rel="noopener">شواهد الخطط الدراسية</a>
-      </article>
-    </section>
-
-    <!-- المبادرات النوعية (٦ منفصلة) -->
-    <section id="initiatives" class="section" aria-labelledby="initiatives-title">
-      <h2 id="initiatives-title" class="mb-6 text-[var(--color-secondary)] font-extrabold">٣) المبادرات النوعية والابتكارات (ست مبادرات منفصلة)</h2>
-      <div class="grid lg:grid-cols-2 gap-8">
-        <!-- 1. أثر -->
-        <article class="golden-card">
-          <span class="badge badge-pink mb-2">ابتكار تقني (AI)</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">«أثر» — مولّد استراتيجيات تدريس بالذكاء الاصطناعي</h3>
-          <p class="mb-3">توليد استراتيجيات متوافقة مع الموضوع وبلوم، تسريع التخطيط ورفع جودة التصميم على مستوى القسم.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1oT5x9WVSu7oL7Dasx-8BVtQSASpS6ab8" target="_blank" rel="noopener">شواهد مبادرة أثر</a>
-        </article>
-
-        <!-- 2. دليل حصص الاحتياط (ملف مسابقات وأنشطة) -->
-        <article class="golden-card">
-          <span class="badge badge-blue mb-2">ابتكار تنظيمي</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">دليل حصص الاحتياط — «مسابقات وأنشطة جاهزة للمعلمات»</h3>
-          <p class="mb-3">ملف متكامل للحصص الاحتياطية يعزّز <span class="mark">التعاون</span> و<span class="mark">التفكير</span> والروابط الإيجابية بين الطالبات، ويضمن استمرارية التعلم.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1NVXdT20YX2Or6d0USSC1Mzip41l6ksf2" target="_blank" rel="noopener">شواهد تفعيل الاحتياط</a>
-        </article>
-
-        <!-- 3. سدّ الحاجة في النصاب -->
-        <article class="golden-card">
-          <span class="badge badge-green mb-2">مسؤولية مهنية</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">مبادرة «سدّ الحاجة» — استلام نصاب إضافي لضمان الاستمرارية</h3>
-          <p class="mb-3">بادرة لسدّ نقص الكادر التعليمي فوراً، مع ضبط الجداول وآليات المتابعة بما يحفظ انسيابية العملية التعليمية.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1oT5x9WVSu7oL7Dasx-8BVtQSASpS6ab8" target="_blank" rel="noopener">شواهد المسؤولية</a>
-        </article>
-
-        <!-- 4. تجهيز السجلات (سجل متابعة العلوم) -->
-        <article class="golden-card">
-          <span class="badge badge-blue mb-2">جودة وإنتاجية</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">مبادرة «تجهيز السجلات» — سجل متابعة لمعلمات العلوم</h3>
-          <p class="mb-3">تصميم سجل موحّد لبدايات العام الدراسي يرفع كفاءة التوثيق والجرد ويُسهّل تقييم الأداء.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1QvPlqSx-TvuV_b5OKcxDiqdPv9XMtE-X" target="_blank" rel="noopener">شواهد السجلات</a>
-        </article>
-
-        <!-- 5. كسوة الشتاء -->
-        <article class="golden-card">
-          <span class="badge badge-amber mb-2">عطاء مجتمعي</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">«كسوة الشتاء» — دعم الأسر المحتاجة</h3>
-          <p class="mb-3">حملة نوعية لتأمين احتياجات الأسر، وتعزيز روح التعاون والمسؤولية لدى الطالبات.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1oT5x9WVSu7oL7Dasx-8BVtQSASpS6ab8" target="_blank" rel="noopener">شواهد المبادرة</a>
-        </article>
-
-        <!-- 6. تهيئة المصلى وتجديد المصاحف -->
-        <article class="golden-card">
-          <span class="badge badge-amber mb-2">مسؤولية مجتمعية</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">تهيئة المصلى وتجديد المصاحف</h3>
-          <p class="mb-3">تعزيز قيم الهوية والسكينة عبر بيئة روحية ملائمة داخل المدرسة.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1oT5x9WVSu7oL7Dasx-8BVtQSASpS6ab8" target="_blank" rel="noopener">شواهد المبادرة</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- المشاريع -->
-    <section id="projects" class="section" aria-labelledby="projects-title">
-      <h2 id="projects-title" class="mb-6 text-[var(--color-secondary)] font-extrabold">٤) المشاريع العلمية الإبداعية</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <article class="golden-card">
-          <span class="badge badge-pink mb-2">تعلم قائم على المنتج (PBL)</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">«الفيزياء التجميلية» — تكامل الفيزياء والكيمياء وريادة الأعمال</h3>
-          <p class="mb-3">تحويل نظريات فيزيائية إلى تطبيقات تجميلية ومنتجات جاهزة، بمشاركة الطالبات في النماذج الأولية والعروض.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/190I0TTSgnHD-Xph1xLOPAmwSYvHpJQYI" target="_blank" rel="noopener">ملف المشروع</a>
-        </article>
-
-        <article class="golden-card">
-          <span class="badge badge-green mb-2">ربط مهني</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">رحلة علمية — قسم الفيزياء الطبية (مدينة الملك سعود الطبية)</h3>
-          <p class="mb-3">زيارة نوعية لتعميق الارتباط بمهن المستقبل؛ مقابلات مع مختصين، ومواءمة نواتج التعلم مع تطبيقات واقعية في التصوير الطبي والجرعات الإشعاعية.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1b-8huI6CP7Wa-aHxZHbJNvcxqh4yz-yl" target="_blank" rel="noopener">شواهد الرحلة</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- التطوير المهني والشراكات -->
-    <section id="dev" class="section" aria-labelledby="dev-title">
-      <h2 id="dev-title" class="mb-6 text-[var(--color-secondary)] font-extrabold">٥) التطوير المهني والشراكات</h2>
-      <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
-        <article class="golden-card">
-          <span class="badge badge-green mb-2">نمو مهني</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">«أسرار كانفا» — دورة قدّمتها</h3>
-          <p class="mb-3">توظيف الذكاء الاصطناعي داخل كانفا لإنتاج فيديوهات ومواد تفاعلية ترفع مشاركة الطالبات.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1SfCRNQguj-Qn5H_n015vMvIZSF_iXD7J" target="_blank" rel="noopener">شواهد الدورة</a>
-        </article>
-
-        <article class="golden-card">
-          <span class="badge badge-green mb-2">مجتمعات مهنية</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">زيارات تبادلية وتشارك خبرات</h3>
-          <p class="mb-3">معايير أداء مشتركة ودروس مشاهدة انعكست على جودة الممارسات بالقسم.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1rfvlPAt9ykLb9AZ00VcDw9wDq4w4T5wF" target="_blank" rel="noopener">سجل الزيارات</a>
-        </article>
-
-        <article class="golden-card">
-          <span class="badge badge-green mb-2">شراكات نوعية</span>
-          <h3 class="mb-2 text-[var(--color-secondary)] font-bold">رحلات مهنية — فيزياء طبية وصناعية</h3>
-          <p class="mb-3">تنسيق فعال لربط المنهج بالممارسات المهنية، وتوسيع أفق الطالبات.</p>
-          <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1b-8huI6CP7Wa-aHxZHbJNvcxqh4yz-yl" target="_blank" rel="noopener">شواهد الرحلات</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- التكاليف -->
-    <section id="parents" class="section" aria-labelledby="parents-title">
-      <h2 id="parents-title" class="mb-6 text-[var(--color-secondary)] font-extrabold">٦) التواصل مع أولياء الأمور</h2>
-      <article class="golden-card">
-        <span class="badge badge-blue mb-2">شراكة أسرة–مدرسة</span>
-        <h3 class="mb-2 text-[var(--color-secondary)] font-bold">قنوات واضحة وتغذية راجعة مجدولة</h3>
-        <p class="mb-3">نشرات وإشعارات ولغة بيانات تُيسّر المتابعة، مع مواعيد دقيقة للتواصل وتحسين ملحوظ في التحصيل.</p>
-        <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1gJGZuCxpfZFjmwZzxDsnOZmopw1Ikvu" target="_blank" rel="noopener">ملف التواصل</a>
-      </article>
-    </section>
-
-    <section id="supervision" class="section" aria-labelledby="supervision-title">
-      <h2 id="supervision-title" class="mb-6 text-[var(--color-secondary)] font-extrabold">٧) التقييم الإداري</h2>
-      <article class="golden-card">
-        <span class="badge badge-blue mb-2">جودة وأثر</span>
-        <h3 class="mb-2 text-[var(--color-secondary)] font-bold">مؤشرات إيجابية وفرص تحسين</h3>
-        <p class="mb-3">تحليل دوري للتقارير واستثمار ملاحظات الإدارة لتعزيز نقاط القوة ومعالجة فرص التطوير.</p>
-        <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1oDlaedUJQibOnBuFMS_GL8xUmI5meoeh" target="_blank" rel="noopener">ملف التقييم</a>
-      </article>
-    </section>
-
-    <section id="competitions" class="section" aria-labelledby="competitions-title">
-      <h2 id="competitions-title" class="mb-6 text-[var(--color-secondary)] font-extrabold">٨) المسابقات العلمية</h2>
-      <article class="golden-card">
-        <span class="badge badge-pink mb-2">بناء القدرات</span>
-        <h3 class="mb-2 text-[var(--color-secondary)] font-bold">مشاركات تُنمّي الفضول والتنافس</h3>
-        <p class="mb-3">تنظيم مسابقات علمية وتدريب الطالبات على العرض وإنتاج حلول عملية، بما في ذلك المشاركة في المعرض المصاحب.</p>
-        <a class="btn btn-primary" href="https://drive.google.com/drive/folders/12IbcVxRNIlfDa7RhoifnEga0OySuUNfW" target="_blank" rel="noopener">شواهد المسابقات</a>
-      </article>
-    </section>
-
-    <section id="activities" class="section" aria-labelledby="activities-title">
-      <h2 id="activities-title" class="mb-6 text-[var(--color-secondary)] font-extrabold">٩) الأنشطة المدرسية (المسؤولية المجتمعية)</h2>
-      <article class="golden-card">
-        <span class="badge badge-amber mb-2">مجتمع المدرسة</span>
-        <h3 class="mb-2 text-[var(--color-secondary)] font-bold">إذاعات واحتفالات ومناسبات وطنية</h3>
-        <p class="mb-3">حضور فاعل يربط المدرسة بالمجتمع ويعزّز الهوية.</p>
-        <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1eleFy_Jzp6EjT6NBN8bhgCb8km8E4yzB" target="_blank" rel="noopener">شواهد الأنشطة</a>
-      </article>
-    </section>
-
-    <!-- تواصل -->
-    <section id="contact" class="container section" aria-labelledby="contact-title">
-      <h2 id="contact-title" class="mb-6 text-[var(--color-secondary)] font-extrabold">تواصل</h2>
-      <article class="golden-card">
-        <p class="mb-3">يسعدني استقبال الملاحظات المهنية والاستفسارات:</p>
-        <div class="flex flex-wrap items-center gap-3">
-          <a class="btn btn-primary" href="mailto:n-almujayrish@trbyh.edu.sa" rel="noopener">n-almujayrish@trbyh.edu.sa</a>
-        </div>
-      </article>
-    </section>
-
-    <!-- شكر -->
-    <section class="pt-12">
-      <article class="golden-card text-center" aria-labelledby="thanks">
-        <h2 id="thanks" class="mb-2 text-[var(--color-secondary)] font-extrabold">شكر وتقدير</h2>
-        <p class="lead">
-          خالص الشكر لـ <span class="mark">مدارس التربية النموذجية — ثانوي الريان</span>،  
-          و<span class="mark">الشركة الوطنية للتربية والتعليم</span> على البيئة التمكينية والدعم المستمر لصناعة الإبداع والابتكار في مدارسنا.
-        </p>
-        <a href="#intro" class="btn btn-light mt-5" aria-label="العودة للأعلى">عودة للأعلى ↑</a>
-      </article>
-    </section>
-  </main>
-
-  <!-- CTA ثابت -->
-  <div class="floating-cta">
-    <a href="#contact" class="btn btn-primary shadow-lg">تواصل معي</a>
-  </div>
-
-  <!-- Footer -->
-  <footer class="bg-[var(--color-secondary)] text-white text-center py-6 mt-12" role="contentinfo">
-    <p class="text-sm">مسار الإبداع والابتكار — ملف إنجاز ندى محمد سعد المجيرش</p>
-    <p class="text-xs mt-1">مدارس التربية النموذجية — الشركة الوطنية للتربية والتعليم</p>
-  </footer>
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Portfolio />);
+    </script>
 </body>
 </html>
