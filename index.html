@@ -253,7 +253,7 @@
             };
 
             return (
-                <div className="min-h-screen bg-bglight font-sans text-navy">
+                <div className="min-h-screen bg-bglight font-sans text-navy flex flex-col">
                     
                     <button 
                         type="button"
@@ -310,7 +310,7 @@
                         </nav>
                     </aside>
 
-                    <main className="md:mr-64 lg:mr-80 min-h-screen flex flex-col transition-all duration-300">
+                    <main className="md:mr-64 lg:mr-80 flex-1 flex flex-col transition-all duration-300">
                         
                         <header className="bg-white p-3 md:p-4 shadow-sm border-b-2 border-gold sticky top-0 z-30">
                             <div className="max-w-4xl mx-auto flex flex-row justify-between items-center gap-2">
@@ -384,6 +384,16 @@
                                 </div>
                             )}
                         </div>
+
+                        {/* الفوتر - شكر وتقدير للإدارة */}
+                        <footer className="bg-white border-t-2 border-gold p-6 mt-auto text-center shadow-inner">
+                            <h4 className="font-heading text-lg font-black text-navy mb-2">شكر وتقدير</h4>
+                            <p className="text-sm font-semibold text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                                أتقدم بخالص الشكر والامتنان لإدارة المرحلة الثانوية بمدارس التربية النموذجية (مجمع الريان)، 
+                                ممثلة بمديرة المرحلة الأستاذة/ إشراق الحبردي، ووكيلة الشؤون التعليمية الأستاذة/ أسماء البصير، 
+                                على الدعم المستمر والتوجيه السديد الذي أثمر في تجويد الممارسات المهنية والارتقاء بنواتج التعلم.
+                            </p>
+                        </footer>
 
                     </main>
                 </div>
