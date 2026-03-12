@@ -6,7 +6,7 @@
     <title>ملف الإنجاز | الجودة والإنتاجية - ندى المجيرش</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://e.top4top.io/p_37233bamm0.png" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -212,10 +212,13 @@
                         ] 
                     },
                     { 
-                        id: "2.15", title: "ربط المادة بالمواد الأخرى", 
-                        concept: "إظهار تكامل العلوم وربط المفاهيم الفيزيائية بالواقع الهندسي والطبي.",
-                        application: "توجيه الطالبات لإنتاج مشاريع علمية تدمج الفيزياء بالهندسة والتقنية (مثل مشروع الفيزياء النووية).", 
-                        links: [{ label: "مشاريع الطالبات العلمية", url: "https://drive.google.com/drive/folders/1-4pthTfiLT4NkEIDmB0CAxCUIQiXfhoU" }] 
+                        id: "2.15", title: "ربط المادة بالمواد الأخرى والوطن", 
+                        concept: "إظهار تكامل العلوم وربط المفاهيم الفيزيائية بالواقع الهندسي والطبي، وتوظيفها لخدمة قضايا البيئة والوطن.",
+                        application: "توجيه الطالبات لإنتاج مشاريع تدمج الفيزياء بالهندسة، وربط الدروس المنهجية (عبر شرائح العرض) بمشاريع رؤية المملكة 2030 لتعزيز الانتماء الوطني والوعي البيئي.", 
+                        links: [
+                            { label: "مشاريع الطالبات العلمية", url: "https://drive.google.com/drive/folders/1-4pthTfiLT4NkEIDmB0CAxCUIQiXfhoU" },
+                            { label: "شواهد الربط بالوطن (رؤية 2030)", url: "https://drive.google.com/drive/folders/1h0tFn1_p_9ZcFO9XSHS9GfDLY644ytpl" }
+                        ] 
                     },
                     { 
                         id: "2.16", title: "تبسيط المعلومات", 
@@ -344,7 +347,7 @@
                                         <span className="text-gold">NE231009</span>
                                     </p>
                                 </div>
-                                <img src="https://k.top4top.io/p_359656o321.png" alt="شعار الشركة" className="h-10 md:h-12 object-contain" />
+                                <img src="https://e.top4top.io/p_37233bamm0.png" alt="شعار الشركة" className="h-10 md:h-12 object-contain" />
                             </div>
                         </header>
 
@@ -363,10 +366,20 @@
                                         إنَّ هذا الملف هو حصيلة جهدٍ وعطاءٍ متواصل، جمعتُ فيه ثمار عملي، وخلاصة خبرتي، وما تحقق من إنجازات خلال مسيرتي. أسأل الله أن يجعل ما قدمت خالصًا لوجهه الكريم، وأن يكون شاهدًا على الإخلاص والعمل، وخطوة نحو مزيدٍ من التطوير والتميز.
                                     </p>
                                     
-                                    <div className="bg-navy text-white px-5 md:px-6 py-3 rounded-xl inline-flex items-center justify-center gap-3 z-10 shadow-md">
-                                        <svg className="w-5 h-5 md:w-6 md:h-6 text-gold animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path></svg>
-                                        <p className="font-bold text-xs md:text-sm">الرجاء اختيار أحد البنود من القائمة الجانبية لاستعراض الشواهد</p>
+                                    <button 
+                                        type="button"
+                                        onClick={() => setIsMenuOpen(true)}
+                                        className="md:hidden bg-navy text-white px-5 md:px-6 py-3 rounded-xl inline-flex items-center justify-center gap-3 z-10 shadow-md active:scale-95 transition-transform"
+                                    >
+                                        <svg className="w-5 h-5 text-gold animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                                        <p className="font-bold text-xs">اضغطي هنا لفتح القائمة واستعراض الشواهد</p>
+                                    </button>
+                                    
+                                    <div className="hidden md:inline-flex bg-navy text-white px-6 py-3 rounded-xl items-center justify-center gap-3 z-10 shadow-md">
+                                        <svg className="w-6 h-6 text-gold animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path></svg>
+                                        <p className="font-bold text-sm">الرجاء اختيار أحد البنود من القائمة الجانبية لاستعراض الشواهد</p>
                                     </div>
+
                                 </div>
                             ) : (
                                 <div key={activeItem.id} className="fade-in bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex flex-col my-auto">
@@ -426,4 +439,3 @@
     </script>
 </body>
 </html>
-
