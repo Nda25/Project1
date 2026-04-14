@@ -28,16 +28,23 @@
             -webkit-print-color-adjust: exact !important; 
             print-color-adjust: exact !important; 
         }
-        /* إعدادات الطباعة الاحترافية */
-        @page { size: A4; margin: 10mm 15mm; }
+        /* إعدادات الطباعة الصارمة والجديدة */
+        @page { size: A4; margin: 15mm; }
         @media print {
-            body { background-color: #ffffff !important; font-size: 13pt; }
+            body { background-color: #ffffff !important; font-size: 14pt; }
             .no-print { display: none !important; }
+            /* إجبار كل قسم رئيسي على صفحة جديدة */
+            .print-section { page-break-before: always !important; break-before: page !important; }
             .avoid-break { break-inside: avoid !important; page-break-inside: avoid !important; }
-            /* منع ظهور الروابط كنصوص في بعض المتصفحات */
+            /* منع الروابط من إظهار مساراتها */
             a[href]:after { content: none !important; }
-            .print-border { border: 1px solid #cbd5e1 !important; }
+            /* تحويل الشبكة إلى كتل متتالية لترتيب الطباعة */
+            .print-force-block { display: block !important; width: 100% !important; }
+            .print-item { display: block !important; width: 100% !important; margin-bottom: 2rem !important; }
+            
+            .print-border { border: 2px solid #e2e8f0 !important; }
             .print-shadow-none { box-shadow: none !important; }
+            .print-bg-light { background-color: #F8FAFC !important; }
         }
     </style>
 </head>
@@ -155,7 +162,7 @@
                     {/* زر الطباعة المخصص */}
                     <div className="no-print text-center mb-8 p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
                         <h3 className="font-bold text-navy mb-3">تصدير الملف كـ PDF</h3>
-                        <p className="text-sm text-gray-500 mb-4">للحصول على أفضل نتيجة طباعة، يرجى إزالة التحديد عن "الرؤوس والتذييلات" (Headers and footers) في إعدادات الطباعة.</p>
+                        <p className="text-sm text-gray-500 mb-4">للحصول على أفضل نتيجة طباعة، تأكدي من إزالة التحديد عن "الرؤوس والتذييلات" من إعدادات المتصفح.</p>
                         <button onClick={() => window.print()} className="bg-navy text-white px-8 py-3 rounded-xl font-bold shadow-md hover:bg-gold transition-all duration-300 flex items-center justify-center gap-2 mx-auto">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
                             طباعة ملف الإنجاز
@@ -175,7 +182,7 @@
                             
                             <h1 className="font-heading text-4xl md:text-5xl font-bold text-navyLight mb-8">ملف الإنجاز المهني المتكامل</h1>
                             
-                            <div className="bg-bglight p-6 rounded-2xl border border-gray-100 mb-8 inline-block w-full max-w-md">
+                            <div className="bg-bglight print-bg-light p-6 rounded-2xl border border-gray-100 mb-8 inline-block w-full max-w-md">
                                 <h3 className="text-sm font-bold text-gray-500 mb-1">إعداد المعلمة</h3>
                                 <h2 className="text-2xl font-black text-navy mb-2">ندى محمد المجيرش</h2>
                                 <p className="text-sm font-bold text-gold">معلمة الفيزياء والهندسة - المرحلة الثانوية | NE231009</p>
@@ -189,24 +196,24 @@
                                     </p>
                                 </div>
                                 <div className="flex gap-4 justify-center pt-4">
-                                    <a href="vision_mission.pdf" target="_blank" className="bg-white border border-gray-300 text-navy px-5 py-2 rounded-lg text-sm font-bold hover:border-gold transition-colors">الرؤية والرسالة</a>
-                                    <a href="nada.pdf" target="_blank" className="bg-white border border-gray-300 text-navy px-5 py-2 rounded-lg text-sm font-bold hover:border-gold transition-colors">الرخصة المهنية</a>
+                                    <a href="vision_mission.pdf" target="_blank" className="bg-white border border-gray-300 text-navy px-5 py-2 rounded-lg text-sm font-bold">الرؤية والرسالة</a>
+                                    <a href="nada.pdf" target="_blank" className="bg-white border border-gray-300 text-navy px-5 py-2 rounded-lg text-sm font-bold">الرخصة المهنية</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* عرض البنود */}
+                    {/* عرض البنود - يتم كسر الصفحة قبل كل قسم رئيسي في الطباعة */}
                     <div className="space-y-8">
                         {portfolioData.map((category, idx) => (
-                            <section key={idx} className="bg-white rounded-3xl shadow-sm border border-gray-200 p-6 md:p-8 print-border print-shadow-none">
+                            <section key={idx} className="print-section bg-white rounded-3xl shadow-sm border border-gray-200 p-6 md:p-8 print-border print-shadow-none mb-8">
                                 <h2 className="font-heading text-xl md:text-2xl font-black text-navy mb-6 border-b border-gray-100 pb-4">
                                     {category.section}
                                 </h2>
                                 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 print-force-block">
                                     {category.items.map((item, i) => (
-                                        <div key={i} className="avoid-break bg-bglight p-5 rounded-2xl border border-gray-100 flex flex-col h-full">
+                                        <div key={i} className="avoid-break print-item bg-bglight print-bg-light p-5 rounded-2xl border border-gray-100 flex flex-col h-full">
                                             <h3 className="font-heading text-lg font-bold text-navyLight mb-2 flex items-center gap-2">
                                                 <span className="w-1.5 h-1.5 bg-gold rounded-full inline-block"></span>
                                                 {item.title}
@@ -216,9 +223,9 @@
                                             </p>
                                             
                                             <div className="pt-4 border-t border-gray-200 space-y-2">
-                                                <p className="text-[11px] font-bold text-gray-400 mb-1">الشواهد والمرفقات:</p>
+                                                <p className="text-[12px] font-bold text-gray-500 mb-1">الشواهد والمرفقات:</p>
                                                 {item.links.map((link, j) => (
-                                                    <a key={j} href={link.url} target="_blank" className="block w-full bg-white border border-gray-200 text-navy px-3 py-2 rounded-lg text-xs font-bold hover:border-gold hover:text-gold transition-colors truncate">
+                                                    <a key={j} href={link.url} target="_blank" className="block w-full bg-white border border-gray-200 text-navy px-3 py-2 rounded-lg text-xs font-bold truncate">
                                                         📄 {link.label}
                                                     </a>
                                                 ))}
@@ -231,10 +238,10 @@
                     </div>
 
                     {/* الخاتمة */}
-                    <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 mt-8 text-center print-border print-shadow-none avoid-break">
+                    <div className="print-section bg-white rounded-3xl shadow-sm border border-gray-200 p-8 mt-8 text-center print-border print-shadow-none avoid-break">
                         <h3 className="font-heading text-xl font-black text-gold mb-3">خاتمة</h3>
                         <p className="text-gray-700 text-sm md:text-base font-semibold leading-relaxed max-w-3xl mx-auto">
-                            ختاماً، إن هذا الملف ليس إلا توثيقاً لرحلة مستمرة من التعلم والعطاء. أتقدم بخالص الشكر والامتنان لإدارة المرحلة الثانوية بمدارس التربية النموذجية (مجمع الريان) على الدعم المستمر والتوجيه السديد الذي ساهم في تجويد ممارساتي المهنية. وما توفيقي إلا بالله، عليه توكلت وإليه أنيب.
+                            ختاماً، إن هذا الملف ليس إلا توثيقاً لرحلة مستمرة من التعلم والعطاء. أتقدم بخالص الشكر والامتنان لإدارة المرحلة الثانوية بمدارس التربية النموذجية على الدعم المستمر والتوجيه السديد الذي ساهم في تجويد ممارساتي المهنية. وما توفيقي إلا بالله، عليه توكلت وإليه أنيب.
                         </p>
                     </div>
 
