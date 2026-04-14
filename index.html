@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملف الإنجاز | ندى المجيرش (نسخة للطباعة)</title>
+    <title>ملف الإنجاز | الجودة والإنتاجية - ندى المجيرش</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -15,19 +18,38 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Cairo', 'sans-serif'], heading: ['Tajawal', 'sans-serif'] },
-                    colors: { navy: '#0F172A', navyLight: '#1E293B', gold: '#C5A059', bglight: '#F8FAFC' }
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                        heading: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#0F172A',
+                        navyLight: '#1E293B',
+                        gold: '#C5A059',
+                        goldLight: '#E2C792',
+                        bglight: '#F8FAFC',
+                    }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #F8FAFC; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        @media print {
-            .page-break-before { page-break-before: always; }
-            .break-inside-avoid { break-inside: avoid; page-break-inside: avoid; }
-            body { background-color: #F8FAFC !important; }
-            a { text-decoration: none !important; }
+        body { background-color: #F8FAFC; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 10px; }
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* حركة خاصة للسهم التنبيهي */
+        @keyframes float-up-down {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float-up-down 1.5s ease-in-out infinite;
         }
     </style>
 </head>
@@ -35,6 +57,8 @@
     <div id="root"></div>
 
     <script type="text/babel">
+        const { useState } = React;
+
         const portfolioData = [
             {
                 section: "التوجه الاستراتيجي",
@@ -252,79 +276,193 @@
             }
         ];
 
-        function PortfolioPDF() {
+        function Portfolio() {
+            const [activeItem, setActiveItem] = useState(null);
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [hasOpenedMenu, setHasOpenedMenu] = useState(false);
+
+            const handleItemClick = (e, item) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setActiveItem(item);
+                setIsMenuOpen(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
             return (
-                <div className="bg-bglight font-sans text-navy min-h-screen pb-10">
+                <div className="min-h-screen bg-bglight font-sans text-navy flex flex-col relative">
                     
-                    {/* الترويسة */}
-                    <header className="bg-white p-4 shadow-sm border-b-4 border-gold break-inside-avoid">
-                        <div className="max-w-4xl mx-auto flex justify-between items-center">
-                            <img src="https://f.top4top.io/p_37235mo091.png" alt="شعار المدارس" className="h-12 object-contain" />
-                            <div className="text-center flex-1">
-                                <h1 className="font-heading text-2xl font-black text-navy mb-1">ندى محمد المجيرش</h1>
-                                <p className="text-sm font-bold text-gray-600">معلمة فيزياء - المرحلة الثانوية | <span className="text-gold">NE231009</span></p>
-                            </div>
-                            <img src="https://k.top4top.io/p_37234u2y41.png" alt="شعار الشركة" className="h-12 object-contain" />
-                        </div>
-                    </header>
-
-                    <div className="p-6 max-w-4xl mx-auto">
-                        {/* المقدمة */}
-                        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 text-center mb-10 break-inside-avoid">
-                            <h2 className="font-heading text-3xl font-black text-navy mb-4">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</h2>
-                            <div className="w-20 h-1.5 bg-gold mb-6 mx-auto rounded-full"></div>
-                            <h3 className="font-heading text-xl font-bold text-navyLight mb-6 bg-bglight px-4 py-2 rounded-xl inline-block border border-gray-100">ملف الإنجاز المهني - مسار الجودة والإنتاجية</h3>
-                            <p className="text-gray-700 text-base leading-relaxed font-semibold mb-6">
-                                الحمد لله الذي علَّم بالقلم، علَّم الإنسان ما لم يعلم، وأسبغ علينا نعمه ظاهرةً وباطنة. والصلاة والسلام على خير من علَّم البشرية وأرشدها إلى طريق الحق والهدى، نبينا محمد صلى الله عليه وسلم، وعلى آله وصحبه أجمعين.
-                                <br/><br/>
-                                إنَّ هذا الملف هو حصيلة جهدٍ وعطاءٍ متواصل، جمعتُ فيه ثمار عملي، وخلاصة خبرتي، وما تحقق من إنجازات خلال مسيرتي. أسأل الله أن يجعل ما قدمت خالصًا لوجهه الكريم، وأن يكون شاهدًا على الإخلاص والعمل، وخطوة نحو مزيدٍ من التطوير والتميز.
-                            </p>
-                            <div className="flex justify-center gap-4 mt-6">
-                                <a href="nam.pdf" target="_blank" className="bg-navy text-white px-4 py-2 rounded-lg text-sm font-bold border-2 border-navy">نموذج التقديم على الجائزة</a>
-                                <a href="nada.pdf" target="_blank" className="bg-white text-navy border-2 border-gray-200 px-4 py-2 rounded-lg text-sm font-bold">الرخصة المهنية</a>
+                    {/* التلميح (التبويبة النابضة) تظهر فقط للجوال وإذا لم يتم فتح القائمة سابقاً */}
+                    {!hasOpenedMenu && (
+                        <div className="md:hidden fixed bottom-24 right-4 z-[65] flex flex-col items-center animate-float" onClick={() => { setIsMenuOpen(true); setHasOpenedMenu(true); }}>
+                            <div className="bg-gold text-navy text-xs font-black py-1.5 px-3 rounded-lg shadow-xl text-center border-2 border-white relative cursor-pointer">
+                                لاستعراض الشواهد<br/>اضغط هنا
+                                <div className="absolute -bottom-2 right-6 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-gold"></div>
                             </div>
                         </div>
+                    )}
 
-                        {/* استعراض البنود */}
-                        {portfolioData.map((category, idx) => (
-                            <div key={idx} className="mb-10 page-break-before">
-                                <h2 className="text-xl font-black text-gold mb-6 border-b-2 border-gold pb-2">{category.section}</h2>
-                                <div className="space-y-6">
-                                    {category.items.map(item => (
-                                        <div key={item.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden break-inside-avoid">
-                                            <div className="bg-navy p-4 text-white flex items-center border-b-2 border-gold">
-                                                <span className="font-black bg-white/10 px-3 py-1 rounded-lg text-sm ml-3">البند {item.id}</span>
-                                                <h3 className="font-heading text-lg font-bold">{item.title}</h3>
-                                            </div>
-                                            <div className="p-5 space-y-4">
-                                                <div>
-                                                    <h4 className="font-black text-gold text-sm mb-1">المفهوم / الهدف</h4>
-                                                    <p className="text-sm bg-bglight p-3 rounded-lg border border-gray-100 font-semibold">{item.concept}</p>
-                                                </div>
-                                                <div>
-                                                    <h4 className="font-black text-navyLight text-sm mb-1">آلية التطبيق</h4>
-                                                    <p className="text-sm text-gray-700">{item.application}</p>
-                                                </div>
-                                            </div>
-                                            <div className="bg-gray-50 p-4 border-t border-gray-200 flex flex-wrap gap-2">
-                                                {item.links.map((link, i) => (
-                                                    <a key={i} href={link.url} target="_blank" className="bg-white border border-gray-200 text-navy px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm">
-                                                        🔗 {link.label}
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
+                    {/* زر القائمة الدائري في الجوال */}
+                    <button 
+                        type="button"
+                        onClick={() => { setIsMenuOpen(!isMenuOpen); setHasOpenedMenu(true); }}
+                        className={`md:hidden fixed bottom-6 right-6 z-[60] text-white p-3.5 rounded-full shadow-2xl transition-all duration-300 ${!hasOpenedMenu ? 'bg-navy animate-pulse ring-4 ring-navy/40' : 'bg-gold hover:scale-105'}`}
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+
+                    {isMenuOpen && (
+                        <div className="fixed inset-0 bg-black/60 z-40 md:hidden backdrop-blur-sm" onClick={() => setIsMenuOpen(false)}></div>
+                    )}
+
+                    <aside className={`fixed inset-y-0 right-0 z-50 w-64 lg:w-72 bg-navy text-white flex flex-col transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:translate-x-0 shadow-2xl border-l border-white/5`}>
+                        <div className="p-5 text-center border-b border-white/10 bg-navyLight">
+                            <h2 className="font-heading text-lg font-black text-gold mb-1">المجال الثاني</h2>
+                            <p className="text-xs font-bold opacity-80">الجودة والإنتاجية</p>
+                        </div>
+                        <nav className="flex-1 overflow-y-auto p-3 custom-scrollbar">
+                            
+                            <button 
+                                type="button"
+                                onClick={() => {setActiveItem(null); setIsMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' });}}
+                                className={`w-full text-right flex items-center gap-2 py-2.5 px-3 mb-4 text-sm font-bold rounded-lg transition-all duration-200 outline-none ${activeItem === null ? 'bg-gold text-navy shadow-md' : 'bg-white/5 text-gold hover:bg-white/10'}`}
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                                المقدمة الرئيسية
+                            </button>
+
+                            <div className="space-y-4">
+                                {portfolioData.map((category, idx) => (
+                                    <div key={idx} className="mb-2">
+                                        <h3 className="text-gold font-bold mb-2 text-xs uppercase px-2">{category.section}</h3>
+                                        <ul className="space-y-1 pr-2 border-r-2 border-white/10">
+                                            {category.items.map((item) => {
+                                                const isActive = activeItem?.id === item.id;
+                                                return (
+                                                    <li key={item.id}>
+                                                        <button 
+                                                            type="button"
+                                                            onClick={(e) => handleItemClick(e, item)}
+                                                            className={`w-full text-right flex items-start gap-2 py-2 px-2.5 text-xs font-semibold rounded-lg transition-all duration-200 outline-none ${isActive ? 'bg-white/10 text-gold shadow-sm' : 'text-gray-300 hover:text-white hover:bg-white/5'}`}
+                                                        >
+                                                            <span className={`shrink-0 py-0.5 px-1.5 rounded text-[10px] font-black mt-0.5 ${isActive ? 'bg-gold text-navy' : 'bg-transparent text-gold'}`}>{item.id}</span>
+                                                            <span className="flex-1 leading-relaxed">{item.title}</span>
+                                                        </button>
+                                                    </li>
+                                                )
+                                            })}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        </nav>
+                    </aside>
+
+                    <main className="md:mr-64 lg:mr-72 flex-1 flex flex-col min-h-screen transition-all duration-300">
+                        
+                        <header className="bg-white p-3 md:p-4 shadow-sm border-b-2 border-gold sticky top-0 z-30 shrink-0">
+                            <div className="max-w-5xl mx-auto flex flex-row justify-between items-center gap-2">
+                                <img src="https://f.top4top.io/p_37235mo091.png" alt="شعار المدارس" className="h-8 md:h-10 lg:h-12 object-contain" />
+                                <div className="text-center flex-1">
+                                    <h1 className="font-heading text-base md:text-lg lg:text-xl font-black text-navy mb-0.5">ندى محمد المجيرش</h1>
+                                    <p className="text-[10px] md:text-xs lg:text-sm font-bold text-gray-600 flex justify-center items-center gap-1.5 flex-wrap">
+                                        معلمة فيزياء - المرحلة الثانوية
+                                        <span className="hidden md:inline text-gray-300">|</span>
+                                        <span className="text-gold">NE231009</span>
+                                    </p>
                                 </div>
+                                <img src="https://k.top4top.io/p_37234u2y41.png" alt="شعار الشركة" className="h-8 md:h-10 lg:h-12 object-contain" />
                             </div>
-                        ))}
-                    </div>
+                        </header>
+
+                        <div className="p-4 md:p-6 lg:p-8 w-full max-w-5xl mx-auto flex-1 flex flex-col justify-center">
+                            
+                            {activeItem === null ? (
+                                <div className="fade-in bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col p-6 md:p-8 lg:p-10 text-center items-center justify-center relative my-auto">
+                                    
+                                    <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-black text-navy mb-3 md:mb-4 z-10">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</h2>
+                                    <div className="w-16 md:w-20 h-1 md:h-1.5 bg-gold mb-5 md:mb-6 mx-auto rounded-full z-10"></div>
+                                    <h3 className="font-heading text-lg md:text-xl lg:text-2xl font-bold text-navyLight mb-5 md:mb-6 z-10 bg-bglight px-4 py-2 rounded-xl border border-gray-100 inline-block shadow-sm">ملف الإنجاز المهني - مسار الجودة والإنتاجية</h3>
+                                    
+                                    <p className="text-gray-700 text-sm md:text-base lg:text-lg leading-relaxed md:leading-relaxed max-w-3xl mx-auto mb-8 z-10 font-semibold text-justify" style={{textAlignLast: "center"}}>
+                                        الحمد لله الذي علَّم بالقلم، علَّم الإنسان ما لم يعلم، وأسبغ علينا نعمه ظاهرةً وباطنة. والصلاة والسلام على خير من علَّم البشرية وأرشدها إلى طريق الحق والهدى، نبينا محمد صلى الله عليه وسلم، وعلى آله وصحبه أجمعين.
+                                        <br/><br/>
+                                        إنَّ هذا الملف هو حصيلة جهدٍ وعطاءٍ متواصل، جمعتُ فيه ثمار عملي، وخلاصة خبرتي، وما تحقق من إنجازات خلال مسيرتي. أسأل الله أن يجعل ما قدمت خالصًا لوجهه الكريم، وأن يكون شاهدًا على الإخلاص والعمل، وخطوة نحو مزيدٍ من التطوير والتميز.
+                                    </p>
+
+                                    {/* أزرار الشواهد الإضافية في المقدمة */}
+                                    <div className="flex flex-wrap justify-center gap-3 w-full max-w-2xl mx-auto mb-8 z-10">
+                                        <a href="nam.pdf" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[200px] justify-center inline-flex items-center gap-2 bg-navy border-2 border-navy text-white hover:bg-gold hover:border-gold px-4 py-3 rounded-xl shadow-md text-sm md:text-base font-bold transition-all duration-300 hover:-translate-y-1">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                            نموذج التقديم على الجائزة 
+                                        </a>
+                                        <a href="nada.pdf" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[200px] justify-center inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-navy hover:border-gold px-4 py-3 rounded-xl shadow-md text-sm md:text-base font-bold transition-all duration-300 hover:-translate-y-1">
+                                            <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                            الرخصة المهنية
+                                        </a>
+                                    </div>
+                                    
+                                    <div className="hidden md:inline-flex bg-navy text-white px-6 py-3 rounded-xl items-center justify-center gap-3 z-10 shadow-md border-b-2 border-gold">
+                                        <svg className="w-5 h-5 lg:w-6 lg:h-6 text-gold animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path></svg>
+                                        <p className="font-black text-sm lg:text-base">الرجاء اختيار أحد البنود من القائمة الجانبية لاستعراض الشواهد</p>
+                                    </div>
+
+                                </div>
+                            ) : (
+                                <div key={activeItem.id} className="fade-in bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col my-auto">
+                                    
+                                    <div className="bg-navy p-4 md:p-5 lg:p-6 text-white flex justify-between items-center border-b-2 border-gold">
+                                        <span className="font-black text-base md:text-lg bg-white/10 px-3 md:px-4 py-1.5 rounded-lg shadow-inner">البند {activeItem.id}</span>
+                                        <h2 className="font-heading text-lg md:text-xl lg:text-2xl font-bold text-right ml-3 leading-tight">{activeItem.title}</h2>
+                                    </div>
+                                    
+                                    <div className="p-5 md:p-6 lg:p-8 space-y-6 flex-1">
+                                        <div>
+                                            <h3 className="text-sm md:text-base font-black text-gold mb-2 md:mb-3 flex items-center gap-2">
+                                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"></path></svg>
+                                                المفهوم / الهدف
+                                            </h3>
+                                            <p className="text-gray-700 text-sm md:text-base font-semibold leading-relaxed bg-bglight p-4 md:p-5 rounded-xl border border-gray-200 shadow-sm">{activeItem.concept}</p>
+                                        </div>
+                                        
+                                        <div>
+                                            <h3 className="text-sm md:text-base font-black text-navyLight mb-2 md:mb-3 flex items-center gap-2">
+                                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M11.3 1.046A12.014 12.014 0 0010.3 1 12.015 12.015 0 009.29 1.046..."></path><path d="M19.342 9.406c..."></path><path fillRule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 9V6a1 1 0 112 0v4h2a1 1 0 110 2h-3a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
+                                                آلية التطبيق
+                                            </h3>
+                                            <p className="text-gray-700 text-sm md:text-base leading-relaxed p-1">{activeItem.application}</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-gray-50 p-4 md:p-5 lg:p-6 border-t border-gray-200 flex flex-wrap gap-2.5 md:gap-3">
+                                        {activeItem.links.map((link, i) => (
+                                            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-white border border-gray-200 text-navy hover:bg-gold hover:text-white hover:border-gold px-3 md:px-4 py-2 md:py-2.5 rounded-lg shadow-sm text-xs md:text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                                {link.label}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* الفوتر - شكر وتقدير للإدارة */}
+                        <footer className="bg-white border-t border-gray-200 p-4 md:p-5 lg:p-6 shrink-0 text-center shadow-inner mt-auto">
+                            <h4 className="font-heading text-base md:text-lg font-black text-navy mb-1.5 md:mb-2">شكر وتقدير</h4>
+                            <p className="text-xs md:text-sm font-semibold text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                                أتقدم بخالص الشكر والامتنان لإدارة المرحلة الثانوية بمدارس التربية النموذجية (مجمع الريان)، 
+                                ممثلة بمديرة المرحلة الأستاذة/ إشراق الحبردي، ووكيلة الشؤون التعليمية الأستاذة/ أسماء البصير، 
+                                على الدعم المستمر والتوجيه السديد الذي أثمر في تجويد الممارسات المهنية والارتقاء بنواتج التعلم.
+                            </p>
+                        </footer>
+
+                    </main>
                 </div>
             );
         }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<PortfolioPDF />);
+        root.render(<Portfolio />);
     </script>
 </body>
 </html>
