@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ملف الإنجاز المهني | أ. ندى المجيرش</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -15,39 +18,92 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Cairo', 'sans-serif'], heading: ['Tajawal', 'sans-serif'] },
-                    colors: { navy: '#0F172A', navyLight: '#1E293B', gold: '#C5A059', goldLight: '#E2C792', bglight: '#F8FAFC', cardbg: '#F1F5F9' }
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                        heading: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#0F172A',
+                        navyLight: '#1E293B',
+                        gold: '#C5A059',
+                        goldLight: '#E2C792',
+                        emerald: '#059669',
+                        indigo: '#4F46E5',
+                        rose: '#E11D48',
+                        amber: '#D97706',
+                        sky: '#0284C7',
+                        violet: '#7C3AED',
+                        bglight: '#F8FAFC',
+                    }
                 }
             }
         }
     </script>
     <style>
+        /* إعدادات عامة */
         body { 
-            background-color: #f3f4f6; 
+            background-color: #F1F5F9; 
             color: #1e293b; 
             -webkit-print-color-adjust: exact !important; 
             print-color-adjust: exact !important; 
+            overflow-x: hidden;
         }
+        
         /* إعدادات الطباعة الاحترافية */
-        @page { size: A4; margin: 12mm 15mm; }
+        @page { 
+            size: A4; 
+            margin: 0; /* إزالة الهوامش الافتراضية للطباعة */
+        }
+        
         @media print {
-            body { background-color: #ffffff !important; font-size: 13pt; }
+            body { background-color: #ffffff !important; }
             .no-print { display: none !important; }
-            /* كسر الصفحات المنظم */
+            .page-container { padding: 15mm 20mm !important; width: 210mm; min-height: 297mm; }
             .page-break { page-break-before: always !important; }
             .avoid-break { break-inside: avoid !important; page-break-inside: avoid !important; }
-            /* منع ظهور الروابط كنصوص */
-            a[href]:after { content: none !important; }
             
-            .print-border { border: 2px solid #e2e8f0 !important; }
-            .print-bg-light { background-color: #F8FAFC !important; }
-            .print-bg-btn { background-color: #E2E8F0 !important; border: 1px solid #cbd5e1 !important; }
-            .print-text-gold { color: #C5A059 !important; }
-            .print-bg-navy { background-color: #0F172A !important; color: #ffffff !important; }
-            
-            /* تعديل مسافات الطباعة */
-            .print-section-margin { margin-bottom: 2rem !important; }
-            .print-force-block { display: block !important; width: 100% !important; margin-bottom: 1.5rem !important; }
+            /* تحسين ظهور الألوان في الطباعة */
+            .print-shadow { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important; }
+            .print-border { border: 1px solid #e2e8f0 !important; }
+        }
+
+        /* تأثيرات بصرية */
+        .gradient-border {
+            position: relative;
+            border-radius: 1.5rem;
+            background: white;
+            padding: 2px;
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+        
+        .section-card {
+            transition: all 0.3s ease;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        .btn-vibrant {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-vibrant:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* أيقونات مخصصة */
+        .icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            margin-left: 12px;
         }
     </style>
 </head>
@@ -55,247 +111,342 @@
     <div id="root"></div>
 
     <script type="text/babel">
+        const { useState, useEffect } = React;
+
         const portfolioData = [
             {
-                id: 1,
-                breakPage: true,
-                section: "أولاً: التخطيط والإعداد المسبق",
+                section: "أولاً: بطاقة الهوية المهنية والتخطيط",
+                color: "indigo",
+                icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z",
                 items: [
                     { 
-                        title: "توزيع المنهج الدراسي", 
-                        concept: <span>بناء خطة زمنية دقيقة لتوزيع المقررات الدراسية تتوافق مع الأوزان النسبية للأسابيع الدراسية وتضمن <strong>ختم المنهج</strong> في الوقت المحدد.</span>,
-                        links: [{ label: "توزيع خطة الفصل الأول", url: "dd.pdf" }, { label: "توزيع خطة الفصل الثاني", url: "cc.pdf" }] 
+                        title: "التعريف المهني والرسالة", 
+                        concept: <span>أ. <strong>ندى محمد المجيرش</strong>، معلمة فيزياء وهندسة، خريجة جامعة الإمام محمد بن سعود الإسلامية. أعمل على تجويد البيئة التعليمية عبر دمج <strong>التقنية والابتكار</strong> لتحقيق نواتج تعلم رائدة تتوافق مع <strong>رؤية المملكة 2030</strong>.</span>,
+                        links: [
+                            { label: "الرخصة المهنية المعتمدة", url: "https://nda25.github.io/Project1/nada.pdf" }, 
+                            { label: "وثيقة الرؤية والرسالة", url: "https://nda25.github.io/Project1/vision_mission.pdf" }
+                        ] 
                     },
                     { 
-                        title: "الخطط التفصيلية وإدارة الطوارئ", 
-                        concept: <span>تصميم الدروس اليومية وفق <strong>مستويات بلوم العليا</strong>، مع تجهيز خطط بديلة وحقائب تفاعلية لحصص الاحتياط لضمان استمرارية التعلم.</span>,
-                        links: [{ label: "الخطة التفصيلية للدروس", url: "Plan.pdf" }, { label: "خطة مهارات التفكير العليا", url: "https://drive.google.com/drive/folders/180Io-M2v3fBxzMythe4Dlxycw8nN9tnH" }, { label: "شواهد تفعيل حصص الاحتياط", url: "https://drive.google.com/drive/folders/1NVXdT20YX2Or6d0USSC1Mzip41l6ksf2" }]
+                        title: "التخطيط الاستراتيجي للدروس", 
+                        concept: <span>بناء خطط فصلية وأسبوعية محكمة تراعي <strong>مستويات بلوم المعرفية</strong>، مع توظيف استراتيجيات حديثة تضمن شمولية المنهج ومرونة التنفيذ.</span>,
+                        links: [
+                            { label: "توزيع المنهج (الفصل الأول)", url: "https://nda25.github.io/Project1/dd.pdf" }, 
+                            { label: "توزيع المنهج (الفصل الثاني)", url: "https://nda25.github.io/Project1/cc.pdf" },
+                            { label: "خطة مهارات التفكير العليا", url: "https://drive.google.com/drive/folders/180Io-M2v3fBxzMythe4Dlxycw8nN9tnH" }
+                        ]
+                    },
+                    { 
+                        title: "إدارة الوقت والخطط البديلة", 
+                        concept: <span>تفعيل حصص الاحتياط عبر <strong>حقائب تعليمية تفاعلية</strong> (مثل حقيبة ألعاب كانفا) لضمان استمرارية العملية التعليمية وتقليص الهدر الزمني.</span>,
+                        links: [
+                            { label: "شواهد تفعيل حصص الاحتياط", url: "https://drive.google.com/drive/folders/1NVXdT20YX2Or6d0USSC1Mzip41l6ksf2" },
+                            { label: "حقيبة ألعاب كانفا التفاعلية", url: "https://www.canva.com/design/DAG3L_aayp0/7YV6zRiWrysL26I9eQJm3A/view" }
+                        ]
                     }
                 ]
             },
             {
-                id: 2,
-                breakPage: true,
-                section: "ثانياً: القياس والتقويم",
+                section: "ثانياً: التقويم ونواتج التعلم",
+                color: "emerald",
+                icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4",
                 items: [
                     { 
-                        title: "أدوات القياس المتنوعة", 
-                        concept: <span>إعداد اختبارات وأوراق عمل موضوعية ومحكمة تقيس بدقة مدى تحقق <strong>نواتج التعلم</strong>، مع تفعيل التقييم الذاتي للطالبات.</span>,
-                        links: [{ label: "نموذج اختبار (1)", url: "test1.pdf" }, { label: "نموذج اختبار (2)", url: "test2.pdf" }, { label: "نماذج التقييم الذاتي للطالبات", url: "https://drive.google.com/drive/folders/166FyHf1F4DmmIu3BwyAe-VlfPc4m75yc" }]
+                        title: "أدوات القياس والتقويم المبتكرة", 
+                        concept: <span>تصميم اختبارات دورية وأوراق عمل تفاعلية تقيس <strong>الفهم العميق</strong>، مع تحليل دقيق للنتائج لمعالجة الفجوات التعليمية.</span>,
+                        links: [
+                            { label: "نماذج الاختبارات الدورية", url: "https://nda25.github.io/Project1/test1.pdf" }, 
+                            { label: "بنك الأسئلة التفاعلي", url: "https://nda25.github.io/Project1/test2.pdf" }
+                        ]
                     },
                     { 
                         title: "مراعاة الفروق الفردية", 
-                        concept: <span>التصميم العكسي للتدريس عبر توفير بدائل متمايزة للتعلم (بصري، حركي)، وتطبيق استراتيجية <strong>تدريس الأقران</strong> كإثراء للمتفوقات.</span>,
-                        links: [{ label: "تقرير الفروق الفردية", url: "individual_diff.pdf" }, { label: "فيديو تطبيق تدريس الأقران", url: "https://youtu.be/w9B5sYzYrlE?si=fAotddWFnHQypqmb" }]
+                        concept: <span>تطبيق <strong>خطط علاجية</strong> للطالبات المتعثرات وبرامج إثرائية للموهوبات، لضمان تحقيق أقصى إمكانات كل طالبة.</span>,
+                        links: [
+                            { label: "تقرير معالجة الفروق الفردية", url: "https://nda25.github.io/Project1/individual_diff.pdf" },
+                            { label: "سجل متابعة الطالبات", url: "https://drive.google.com/drive/folders/166FyHf1F4DmmIu3BwyAe-VlfPc4m75yc" }
+                        ]
                     }
                 ]
             },
             {
-                id: 3,
-                breakPage: true,
-                section: "ثالثاً: الاستراتيجيات والابتكار التقني",
+                section: "ثالثاً: المبادرات والابتكار الرقمي",
+                color: "violet",
+                icon: "M13 10V3L4 14h7v7l9-11h-7z",
                 items: [
                     { 
-                        title: "الابتكار النوعي (منصة أثر)", 
-                        concept: <span>ابتكار وتطوير <strong>(منصة أثر)</strong> التوليدية كحل تقني لتسريع عملية التخطيط المدرسي وابتكار استراتيجيات تفاعلية تقلل من العبء المعرفي على المعلم.</span>,
-                        links: [{ label: "رابط منصة أثر", url: "https://n-athar.co" }, { label: "تقرير مبادرة المنصة", url: "athar_report.pdf" }]
+                        title: "منصة 'أثـر' والتحول التقني", 
+                        concept: <span>مبادرة رائدة توظف <strong>الذكاء الاصطناعي</strong> في التخطيط المدرسي، مما يساهم في أتمتة العمليات الإدارية والتربوية ورفع كفاءة الأداء.</span>,
+                        links: [
+                            { label: "زيارة منصة أثر", url: "https://n-athar.co" }, 
+                            { label: "تقرير أثر التحول الرقمي", url: "https://nda25.github.io/Project1/athar_report.pdf" }
+                        ]
                     },
                     { 
-                        title: "المحاكاة الرقمية والألعاب", 
-                        concept: <span>استخدام استراتيجية المحاكاة الرقمية <strong>(PhET)</strong> لتبسيط المفاهيم الفيزيائية المجردة، وتصميم حقائب ألعاب بـ <strong>(Canva)</strong> لكسر الجمود الصفي.</span>,
-                        links: [{ label: "شواهد تطبيق المحاكاة (PhET)", url: "https://drive.google.com/drive/folders/18QlC7a2q_2Z9p1M6ZKHdSOXosGm9dK95" }, { label: "تقرير حقيبة ألعاب كانفا", url: "canva_report.pdf" }, { label: "بطاقات الاستراتيجيات", url: "https://drive.google.com/drive/folders/1oGDnB3IhAbMBEPHvg4dZbLriOPWrj8-T" }]
+                        title: "المعامل الافتراضية والمحاكاة", 
+                        concept: <span>تفعيل استراتيجية الاستقصاء المبني على <strong>المحاكاة الرقمية (PhET)</strong> لتبسيط المفاهيم الفيزيائية المجردة وتعميق الفهم التجريبي.</span>,
+                        links: [
+                            { label: "شواهد تطبيق المحاكاة الرقمية", url: "https://drive.google.com/drive/folders/18QlC7a2q_2Z9p1M6ZKHdSOXosGm9dK95" },
+                            { label: "حوكمة وتفعيل معمل الفيزياء", url: "https://drive.google.com/drive/folders/15zqvdJVEFKhfcfu5UJ2skR14o7wS1rqD" }
+                        ]
                     }
                 ]
             },
             {
-                id: 4,
-                breakPage: true,
-                section: "رابعاً: المخرجات والأنشطة الطلابية",
+                section: "رابعاً: الأداء الوظيفي ورضا المستفيدين",
+                color: "sky",
+                icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
                 items: [
                     { 
-                        title: "الرحلات والمنافسات العالمية", 
-                        concept: <span>تأهيل الطالبات وتدريبهن للمشاركة في المسابقة العالمية للذكاء الاصطناعي <strong>(WAICY)</strong>، وربطهن بالمؤسسات الوطنية عبر الرحلات الميدانية.</span>,
-                        links: [{ label: "شهادات مسابقة (WAICY)", url: "https://drive.google.com/drive/folders/1rxBTVJ8XGidiWpI0p-sVZe5TOpFOlbNi" }, { label: "زيارة مدينة الملك عبدالعزيز (KACST)", url: "https://drive.google.com/drive/folders/1Jyjape3y7dyTEQN3o6LwMSGtswb0rGIl" }] 
+                        title: "التميز في الأداء السنوي", 
+                        concept: <span>الحصول على تقييم أداء وظيفي بنسبة <strong>100%</strong>، مع الالتزام التام بالمعايير المهنية والانضباط الوظيفي المشهود.</span>,
+                        links: [
+                            { label: "وثيقة تقييم الأداء (100%)", url: "https://nda25.github.io/Project1/eval_this_year.pdf" }, 
+                            { label: "سجل الانضباط والحضور", url: "https://drive.google.com/drive/folders/16q7LHOfvFlMiVRh2n_knjYlaW0_CBg83" }
+                        ]
                     },
                     { 
-                        title: "الأبحاث ومشاريع (STEM)", 
-                        concept: <span>تحويل الطالبات لباحثات عبر تفعيل المكتبات الرقمية وإنتاج مشاريع تدمج <strong>الفيزياء بالهندسة</strong> وربطها بـ <strong>رؤية 2030</strong> (كالتغير المناخي).</span>,
-                        links: [{ label: "مشاريع الطالبات (STEM)", url: "https://drive.google.com/drive/folders/1-4pthTfiLT4NkEIDmB0CAxCUIQiXfhoU" }, { label: "الأبحاث العلمية المعتمدة", url: "https://drive.google.com/drive/folders/1MkY9Zf_SrFEWRzH7IDQB3QmF-Dp_2zIe" }, { label: "شواهد الربط بالوطن والمناخ", url: "https://drive.google.com/drive/folders/1h0tFn1_p_9ZcFO9XSHS9GfDLY644ytpl" }] 
+                        title: "قياس الأثر ورضا المستفيدين", 
+                        concept: <span>استطلاع آراء الطالبات وأولياء الأمور بصفة دورية، وتحليل <strong>التغذية الراجعة</strong> لتطوير الممارسات التدريسية والبيئة الصفية.</span>,
+                        links: [
+                            { label: "تقرير استطلاع رضا المستفيدين", url: "https://nda25.github.io/Project1/survey.pdf" },
+                            { label: "تحليل نتائج التحصيل الدراسي", url: "https://nda25.github.io/Project1/analysis_report.pdf" }
+                        ]
+                    }
+                ]
+            },
+            {
+                section: "خامساً: شهادات الشكر والتقدير المهني",
+                color: "amber",
+                icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
+                items: [
+                    { 
+                        title: "التكريم والتقدير المؤسسي", 
+                        concept: <span>سجل حافل بخطابات الشكر من <strong>إدارة التعليم</strong> والمشرفات التربويات، تقديراً للمبادرات النوعية والتميز في الأداء التعليمي.</span>,
+                        links: [
+                            { label: "سجل شهادات الشكر والتقدير", url: "https://drive.google.com/drive/folders/1OMhmmxBtGFy6Z8e6N1otBH_RvF6gb0Gk" }
+                        ]
+                    }
+                ]
+            },
+            {
+                section: "سادساً: الإنجازات الطلابية والمنافسات",
+                color: "rose",
+                icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+                items: [
+                    { 
+                        title: "المشاركات العالمية (WAICY)", 
+                        concept: <span>تدريب وتمكين الطالبات للمنافسة في <strong>المسابقة العالمية للذكاء الاصطناعي</strong>، وحصد مراكز متقدمة تعكس جودة المخرجات التعليمية.</span>,
+                        links: [
+                            { label: "شهادات إنجاز الطالبات (WAICY)", url: "https://drive.google.com/drive/folders/1rxBTVJ8XGidiWpI0p-sVZe5TOpFOlbNi" }, 
+                            { label: "نماذج من أبحاث الطالبات", url: "https://drive.google.com/drive/folders/1MkY9Zf_SrFEWRzH7IDQB3QmF-Dp_2zIe" }
+                        ] 
                     },
                     { 
-                        title: "المسؤولية المجتمعية", 
-                        concept: <span>غرس القيم الإيجابية عبر إشراك الطالبات في مبادرات <strong>العمل التطوعي</strong> كحملات كسوة الشتاء، وحوكمة وتنظيم البيئة المدرسية.</span>,
-                        links: [{ label: "مبادرات العمل التطوعي", url: "https://drive.google.com/drive/folders/1kablG2gj-3EgqqEiyzslHJZwmXwVTRFC" }, { label: "حوكمة وتنظيم المعمل", url: "https://drive.google.com/drive/folders/15zqvdJVEFKhfcfu5UJ2skR14o7wS1rqD" }] 
+                        title: "المسؤولية المجتمعية والزيارات", 
+                        concept: <span>تعزيز القيم الوطنية والمسؤولية المجتمعية عبر <strong>مبادرات تطوعية</strong> وزيارات علمية لمراكز الأبحاث الوطنية (مثل KACST).</span>,
+                        links: [
+                            { label: "تقرير زيارة مدينة الملك عبدالعزيز", url: "https://drive.google.com/drive/folders/1Jyjape3y7dyTEQN3o6LwMSGtswb0rGIl" }, 
+                            { label: "شواهد المبادرات التطوعية", url: "https://drive.google.com/drive/folders/1kablG2gj-3EgqqEiyzslHJZwmXwVTRFC" }
+                        ] 
                     }
                 ]
             },
             {
-                id: 5,
-                breakPage: true,
-                section: "خامساً: الأداء الوظيفي ورضا المستفيدين",
+                section: "سابعاً: النمو المهني وامتداد الأثر",
+                color: "violet",
+                icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.691.315a4.836 4.836 0 01-4.024 0l-.691-.315a6 6 0 00-3.86-.517l-2.387.477a2 2 0 00-1.022.547V18a2 2 0 002 2h11a2 2 0 002-2v-2.572zM12 11a4 4 0 100-8 4 4 0 000 8z",
                 items: [
                     { 
-                        title: "التميز والانضباط الوظيفي", 
-                        concept: <span>تحقيق التميز في الأداء الوظيفي بنسبة <strong>(100%)</strong> نتيجة الالتزام بالخطط الإجرائية، والانضباط العالي، والتطوير المستمر للممارسات الصفية.</span>,
-                        links: [{ label: "تقييم الأداء السنوي (100%)", url: "eval_this_year.pdf" }, { label: "تحليل الأداء الوظيفي", url: "analysis_report.pdf" }, { label: "شواهد الانضباط (البصمة)", url: "https://drive.google.com/drive/folders/16q7LHOfvFlMiVRh2n_knjYlaW0_CBg83" }, { label: "الخطة الإجرائية للتحسين", url: "action_plan.pdf" }]
+                        title: "التطوير المهني المستمر", 
+                        concept: <span>الالتزام بخطة نمو مهني طموحة تشمل حضور الدورات التخصصية والبرامج التدريبية المتقدمة في <strong>الفيزياء والتقنيات التعليمية</strong>.</span>,
+                        links: [
+                            { label: "سجل الدورات التدريبية", url: "https://drive.google.com/drive/folders/1xya-WXw4wqnmvEluEnV44HTmXL0ANHvf" }, 
+                            { label: "خطة التطوير المهني 1447هـ", url: "https://nda25.github.io/Project1/pd_plan.pdf" }
+                        ] 
                     },
                     { 
-                        title: "قياس أثر التعلم", 
-                        concept: <span>توزيع استبانات دورية رقمية للطالبات وأولياء الأمور لقياس مؤشرات <strong>الرضا</strong>، وتوظيف التغذية الراجعة في تحسين نواتج التعلم.</span>,
-                        links: [{ label: "نتائج استطلاع المستفيدين", url: "survey.pdf" }]
-                    }
-                ]
-            },
-            {
-                id: 6,
-                breakPage: true, // صفحة جديدة للنمو المهني
-                section: "سادساً: التنمية المهنية المستدامة",
-                items: [
-                    { 
-                        title: "مجتمعات التعلم والتدريب", 
-                        concept: <span>نقل الخبرات عبر الدروس التطبيقية، وحضور البرامج التدريبية المتخصصة، وتفعيل <strong>مجتمعات التعلم المهنية (PLC)</strong> بشكل دوري.</span>,
-                        links: [{ label: "سجل الدورات التدريبية", url: "https://drive.google.com/drive/folders/1xya-WXw4wqnmvEluEnV44HTmXL0ANHvf" }, { label: "تقرير مجتمعات التعلم (PLC)", url: "plc_report.pdf" }, { label: "استمارة زيارة تبادلية", url: "peer_visit.pdf" }, { label: "خطة التطوير المهني", url: "pd_plan.pdf" }]
-                    }
-                ]
-            },
-            {
-                id: 7,
-                breakPage: false, // تكمل بنفس صفحة سادساً لأنهم صغار
-                section: "سابعاً: الشكر والتقدير",
-                items: [
-                    { 
-                        title: "الشهادات وخطابات الشكر", 
-                        concept: <span>توثيق للإنجازات والجهود المبذولة من خلال خطابات <strong>الشكر والتقدير</strong> المقدمة من الإدارة المدرسية والجهات الإشرافية.</span>,
-                        links: [{ label: "سجل شهادات الشكر والتقدير", url: "https://drive.google.com/drive/folders/1OMhmmxBtGFy6Z8e6N1otBH_RvF6gb0Gk" }]
-                    }
-                ]
-            },
-            {
-                id: 8,
-                breakPage: true,
-                section: "ثامناً: التأمل الذاتي للتحسين المستمر",
-                items: [
-                    { 
-                        title: "وقفة تأمل وتقييم للمسيرة التربوية", 
-                        concept: <span>من خلال رحلتي في تعليم الفيزياء، أدركت أن التحدي لا يكمن في تبسيط القوانين المجردة فحسب، بل في إشعال الشغف بالاستكشاف. ابتكار <strong>منصة (أثر)</strong> جاء نتيجة تأمل عميق لاحتياجات الميدان لتخفيف العبء وتجويد المخرجات. أطمح مستقبلاً للتوسع في دمج منهجيات <strong>(STEM)</strong> وتعزيز أدوات الذكاء الاصطناعي لمواكبة متطلبات <strong>رؤية 2030</strong> وإعداد جيل يقود المستقبل.</span>,
-                        links: [] 
+                        title: "مجتمعات التعلم والدروس التطبيقية", 
+                        concept: <span>نقل الخبرة للزميلات عبر تفعيل <strong>مجتمعات التعلم المهنية (PLC)</strong> وتقديم دروس تطبيقية نموذجية توظف منحى STEM.</span>,
+                        links: [
+                            { label: "تقرير مجتمعات التعلم PLC", url: "https://nda25.github.io/Project1/plc_report.pdf" }, 
+                            { label: "شواهد الدروس التطبيقية", url: "https://drive.google.com/drive/folders/1EfBIqZW5_pwEjZFMVG7rWWMJA2To7Gdw" }
+                        ] 
                     }
                 ]
             }
         ];
 
-        function FullPortfolio() {
+        function TeacherPortfolio() {
             return (
-                <div className="max-w-5xl mx-auto p-4 sm:p-8 font-sans text-navy">
+                <div className="font-sans">
                     
-                    {/* زر الطباعة المخصص */}
-                    <div className="no-print text-center mb-8 p-6 bg-white rounded-2xl shadow-md border-t-4 border-navy">
-                        <h3 className="font-bold text-navy mb-2 text-lg">جاهزة للطباعة؟</h3>
-                        <p className="text-sm text-gray-500 mb-4">للحصول على أفضل نتيجة، أزيلي التحديد عن (الرؤوس والتذييلات - Headers and footers) وفعّلي (رسومات الخلفية).</p>
-                        <button onClick={() => window.print()} className="bg-gold text-white px-8 py-3 rounded-xl font-black shadow-lg hover:bg-navy transition-all duration-300 flex items-center justify-center gap-2 mx-auto">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                            تصدير ملف الإنجاز (PDF)
+                    {/* زر الطباعة - يختفي عند الطباعة */}
+                    <div className="no-print fixed bottom-8 left-8 z-50">
+                        <button 
+                            onClick={() => window.print()} 
+                            className="bg-navy text-white px-8 py-4 rounded-2xl font-black shadow-2xl hover:bg-gold hover:scale-110 transition-all flex items-center gap-3 group"
+                        >
+                            <svg className="w-6 h-6 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                            طباعة ملف الإنجاز
                         </button>
                     </div>
 
-                    {/* صفحة الغلاف والمقدمة */}
-                    <div className="bg-white rounded-3xl shadow-md border-b-8 border-gold p-8 md:p-14 mb-12 print-border print-shadow-none">
-                        <header className="flex justify-between items-center pb-8 mb-10 border-b border-gray-100">
-                            <img src="logo1.png" alt="شعار المدرسة" className="h-16 md:h-20 object-contain" onError={(e)=>e.target.style.display='none'} />
-                            <img src="logo2.png" alt="شعار الشركة" className="h-16 md:h-20 object-contain" onError={(e)=>e.target.style.display='none'} />
-                        </header>
+                    {/* الغلاف - صفحة كاملة */}
+                    <div className="page-container cover-page bg-white relative overflow-hidden flex flex-col justify-center items-center text-center">
+                        {/* زخارف الغلاف */}
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full -mr-48 -mt-48"></div>
+                        <div className="absolute bottom-0 left-0 w-96 h-96 bg-navy/5 rounded-full -ml-48 -mb-48"></div>
+                        <div className="absolute top-1/2 left-0 w-4 h-64 bg-gold/20 -translate-y-1/2 rounded-r-full"></div>
                         
-                        <div className="text-center max-w-3xl mx-auto mt-4">
-                            <h2 className="font-heading text-3xl font-black text-navy mb-4">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</h2>
-                            <div className="w-20 h-1.5 bg-gold mx-auto mb-10 rounded-full"></div>
-                            
-                            <h1 className="font-heading text-4xl md:text-5xl font-black text-navyLight mb-12 leading-tight">ملف الإنجاز المهني المتكامل</h1>
-                            
-                            <div className="bg-cardbg print-bg-light p-6 rounded-2xl border border-gray-200 mb-10 inline-block w-full max-w-md shadow-inner">
-                                <h3 className="text-sm font-bold text-gray-500 mb-2 uppercase tracking-wide">إعداد المعلمة</h3>
-                                <h2 className="text-3xl font-black text-navy mb-3">ندى محمد المجيرش</h2>
-                                <p className="text-base font-black text-gold">معلمة الفيزياء والهندسة | NE231009</p>
+                        <div className="w-full flex justify-between px-12 mb-24 relative z-10">
+                            <div className="text-right">
+                                <p className="text-sm font-black text-navy/40">المملكة العربية السعودية</p>
+                                <p className="text-sm font-black text-navy/40">وزارة التعليم</p>
                             </div>
+                            <div className="text-left">
+                                <p className="text-sm font-black text-navy/40">العام الدراسي</p>
+                                <p className="text-sm font-black text-navy/40">1446 - 1447 هـ</p>
+                            </div>
+                        </div>
 
-                            <div className="text-right mt-4 p-6 bg-white border-r-4 border-navy rounded-xl shadow-sm">
-                                <h3 className="font-black text-navy text-xl mb-3">الفلسفة التعليمية</h3>
-                                <p className="text-gray-700 font-semibold leading-loose text-sm md:text-base">
-                                    أؤمن بأن التعليم ليس مجرد نقل للمعرفة، بل هو صناعة للأثر. رسالتي هي خلق بيئة تعليمية آمنة ومحفزة تنقل المفاهيم الفيزيائية من التجريد إلى التطبيق العملي. أسعى دائماً لتوظيف أحدث التقنيات وأدوات الذكاء الاصطناعي لتمكين الطالبات، وإعدادهن ليكنّ جيلاً باحثاً، مبتكراً، وشريكاً فاعلاً في تحقيق رؤية المملكة 2030.
-                                </p>
+                        <div className="relative z-10">
+                            <h2 className="font-heading text-3xl font-black text-navy mb-6">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</h2>
+                            <div className="w-32 h-2 bg-gold mx-auto mb-16 rounded-full"></div>
+                            
+                            <h1 className="font-heading text-7xl font-black text-navyLight mb-4 leading-tight">ملف الإنجاز</h1>
+                            <p className="text-2xl text-gold font-black mb-20 tracking-[0.2em] uppercase">Professional Portfolio</p>
+                            
+                            <div className="bg-white p-12 rounded-[3rem] border-4 border-gold/20 shadow-2xl inline-block mx-auto mb-12 relative">
+                                <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-gold text-white px-8 py-2 rounded-full font-bold text-sm">إعداد المعلمة</div>
+                                <h2 className="text-5xl font-black text-navy mb-4">ندى محمد المجيرش</h2>
+                                <div className="h-1 bg-gradient-to-r from-transparent via-gold/30 to-transparent w-full my-6"></div>
+                                <p className="text-2xl font-bold text-navyLight">معلمة فيزياء وهندسة</p>
+                                <p className="text-lg font-black text-gold mt-2">الرقم الوظيفي: NE231009</p>
+                            </div>
+                        </div>
+
+                        <div className="mt-auto relative z-10 pb-12">
+                            <p className="text-navy/30 font-black text-xl italic">"نحو تعليم مبتكر يبني أجيال المستقبل"</p>
+                        </div>
+                    </div>
+
+                    {/* المقدمة */}
+                    <div className="page-container page-break bg-white py-20">
+                        <div className="max-w-4xl mx-auto">
+                            <div className="flex items-center gap-6 mb-12">
+                                <div className="w-20 h-20 bg-navy text-white rounded-3xl flex items-center justify-center shadow-xl">
+                                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                                </div>
+                                <h2 className="font-heading text-5xl font-black text-navy">مقدمة الملف</h2>
                             </div>
                             
-                            <div className="flex flex-wrap gap-4 justify-center pt-8">
-                                <a href="vision_mission.pdf" target="_blank" className="bg-navy/5 text-navy border border-navy/20 print-bg-btn px-6 py-3 rounded-xl text-sm font-bold hover:bg-gold hover:text-white hover:border-gold transition-all flex items-center gap-2">
-                                    <svg className="w-5 h-5 print-text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                                    الرؤية والرسالة
-                                </a>
-                                <a href="nada.pdf" target="_blank" className="bg-navy/5 text-navy border border-navy/20 print-bg-btn px-6 py-3 rounded-xl text-sm font-bold hover:bg-gold hover:text-white hover:border-gold transition-all flex items-center gap-2">
-                                    <svg className="w-5 h-5 print-text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                    الرخصة المهنية
-                                </a>
+                            <div className="bg-bglight p-12 rounded-[3rem] border-2 border-navy/5 leading-[2.2] text-gray-700 text-xl shadow-inner relative">
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-gold/5 rounded-bl-[5rem]"></div>
+                                <p className="mb-8 font-bold text-navy">
+                                    الحمد لله الذي علم بالقلم، علم الإنسان ما لم يعلم، والصلاة والسلام على معلم البشرية الخير، نبينا محمد وعلى آله وصحبه أجمعين.
+                                </p>
+                                <p className="mb-8">
+                                    يمثل هذا الملف توثيقاً لمسيرتي المهنية خلال العام الدراسي، وهو ليس مجرد رصد للأعمال، بل هو مرآة عاكسة لفلسفتي التعليمية القائمة على <strong>الابتكار، والتحول الرقمي، وتمكين الطالبة</strong>. أسعى من خلاله إلى تجويد الممارسات التدريسية وربط العلوم الفيزيائية بالواقع التطبيقي والتقنيات الحديثة.
+                                </p>
+                                <p>
+                                    يضم الملف شواهد حية على التخطيط الاستراتيجي، والمبادرات التقنية، ونواتج تعلم الطالبات، والنمو المهني المستمر، سائلاً المولى عز وجل أن يكون هذا العمل خالصاً لوجهه الكريم ونافعاً للميدان التعليمي.
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    {/* عرض البنود - كل قسم حسب إعدادات كسر الصفحة */}
-                    <div className="space-y-12">
-                        {portfolioData.map((category) => (
-                            <section key={category.id} className={`${category.breakPage ? 'page-break' : ''} print-section-margin`}>
-                                <h2 className="font-heading text-2xl font-black text-navy mb-6 flex items-center gap-3">
-                                    <span className="w-8 h-1 bg-gold rounded-full inline-block"></span>
-                                    {category.section}
-                                </h2>
+                    {/* الأقسام الرئيسية */}
+                    {portfolioData.map((category, idx) => (
+                        <div key={idx} className="page-container page-break bg-white py-16">
+                            <div className="max-w-5xl mx-auto">
+                                {/* عنوان القسم الملون */}
+                                <div className={`flex items-center gap-6 mb-16 p-8 rounded-[2.5rem] bg-${category.color}-50 border-r-[12px] border-${category.color}-500 shadow-sm`}>
+                                    <div className={`w-16 h-16 bg-${category.color}-500 text-white rounded-2xl flex items-center justify-center shadow-lg`}>
+                                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={category.icon}></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p className={`text-${category.color}-600 font-black text-sm mb-1 uppercase tracking-widest`}>Section {idx + 1}</p>
+                                        <h2 className={`font-heading text-4xl font-black text-navy`}>{category.section}</h2>
+                                    </div>
+                                </div>
                                 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 gap-10">
                                     {category.items.map((item, i) => (
-                                        <div key={i} className="avoid-break print-force-block bg-white p-6 rounded-2xl border-2 border-gray-100 border-r-[6px] border-r-gold shadow-sm hover:shadow-md transition-shadow flex flex-col h-full print-border">
-                                            <h3 className="font-heading text-xl font-bold text-navyLight mb-3">
+                                        <div key={i} className={`avoid-break section-card bg-white p-10 rounded-[3rem] border-2 border-gray-100 shadow-xl relative overflow-hidden`}>
+                                            {/* شريط جانبي ملون */}
+                                            <div className={`absolute top-0 right-0 w-3 h-full bg-${category.color}-500`}></div>
+                                            
+                                            <h3 className="font-heading text-3xl font-black text-navyLight mb-6 flex items-center gap-4">
+                                                <span className={`w-4 h-4 bg-${category.color}-500 rounded-full shadow-lg`}></span>
                                                 {item.title}
                                             </h3>
-                                            <p className="text-sm text-gray-600 font-medium leading-relaxed mb-5 flex-1">
-                                                {item.concept}
-                                            </p>
                                             
-                                            {item.links.length > 0 && (
-                                                <div className="pt-4 border-t border-gray-100 space-y-2">
-                                                    {item.links.map((link, j) => (
-                                                        <a key={j} href={link.url} target="_blank" className="w-full bg-slate-50 border border-slate-200 print-bg-btn text-navy px-4 py-2.5 rounded-lg text-[13px] font-bold hover:border-gold hover:text-gold transition-colors flex items-center gap-2">
-                                                            <svg className="w-4 h-4 print-text-gold text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-                                                            {link.label}
-                                                        </a>
-                                                    ))}
-                                                </div>
-                                            )}
+                                            <div className={`text-gray-600 text-xl leading-relaxed mb-10 bg-${category.color}-50/30 p-8 rounded-[2rem] border border-${category.color}-100/50`}>
+                                                {item.concept}
+                                            </div>
+                                            
+                                            <div className="flex flex-wrap gap-6">
+                                                {item.links.map((link, j) => (
+                                                    <a 
+                                                        key={j} 
+                                                        href={link.url} 
+                                                        target="_blank" 
+                                                        className={`btn-vibrant bg-white border-2 border-${category.color}-200 px-8 py-4 rounded-2xl text-lg font-black text-navy hover:bg-${category.color}-500 hover:text-white hover:border-${category.color}-500 flex items-center gap-3 shadow-md`}
+                                                    >
+                                                        <svg className={`w-6 h-6 text-${category.color}-500 group-hover:text-white`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                                        {link.label}
+                                                    </a>
+                                                ))}
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
-                            </section>
-                        ))}
-                    </div>
+                            </div>
+                        </div>
+                    ))}
 
-                    {/* الخاتمة (تصميم فخم ومختلف للطباعة) */}
-                    <div className="page-break mt-12 avoid-break">
-                        <div className="bg-navy print-bg-navy text-white rounded-3xl p-10 md:p-14 text-center border-4 border-gold/30 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-bl-full"></div>
-                            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gold/10 rounded-tr-full"></div>
-                            
-                            <svg className="w-12 h-12 text-gold mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-                            
-                            <h3 className="font-heading text-2xl font-black text-gold mb-6">خــــاتــــمــــة</h3>
-                            <p className="text-gray-200 text-base md:text-lg font-semibold leading-loose max-w-3xl mx-auto">
-                                إن هذا الملف ليس إلا توثيقاً لرحلة مستمرة من التعلم والعطاء التربوي. أتقدم بخالص الشكر والامتنان لإدارة المرحلة الثانوية بمدارس التربية النموذجية على الدعم المستمر والتوجيه السديد الذي ساهم في تجويد ممارساتي المهنية ورفع سقف طموحي. 
-                                <br/><br/>
-                                <span className="text-white font-black">وما توفيقي إلا بالله، عليه توكلت وإليه أنيب.</span>
-                            </p>
+                    {/* الخاتمة */}
+                    <div className="page-container page-break bg-white py-20">
+                        <div className="max-w-4xl mx-auto">
+                            <div className="bg-navy text-white p-16 rounded-[4rem] shadow-2xl relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full -mr-48 -mt-48"></div>
+                                <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -ml-32 -mb-32"></div>
+                                
+                                <h2 className="font-heading text-5xl font-black mb-12 border-r-8 border-gold pr-6">خاتمة</h2>
+                                
+                                <p className="text-2xl leading-[2] relative z-10 mb-10">
+                                    في ختام هذا الملف، أجدد العهد على مواصلة العطاء وتطوير الذات، مستمدة العون من الله عز وجل، ثم من الدعم اللامحدود الذي يحظى به قطاع التعليم في وطننا الغالي.
+                                </p>
+                                <p className="text-2xl leading-[2] relative z-10">
+                                    إن الإنجاز الحقيقي ليس في توثيق الأوراق، بل في الأثر الذي نتركه في نفوس طالباتنا، وفي العقول التي نساهم في صياغتها لتكون لبنات صالحة في بناء نهضة المملكة. شكراً لكل من ساند ووجه، والقادم أجمل بإذن الله.
+                                </p>
+                                
+                                <div className="mt-20 pt-12 border-t border-white/10 flex justify-between items-end relative z-10">
+                                    <div>
+                                        <p className="text-gold font-black text-xl mb-2">المعلمة:</p>
+                                        <p className="text-4xl font-black">ندى محمد المجيرش</p>
+                                    </div>
+                                    <div className="text-left">
+                                        <p className="text-lg opacity-60 font-bold">تحريراً في عام</p>
+                                        <p className="text-2xl font-black text-gold">1447 هـ</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <footer className="text-center py-12 bg-gray-50 no-print">
+                        <p className="font-black text-navy/40 text-lg">جميع الحقوق محفوظة © ندى محمد المجيرش - 2026</p>
+                    </footer>
                 </div>
             );
         }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<FullPortfolio />);
+        root.render(<TeacherPortfolio />);
     </script>
 </body>
 </html>
