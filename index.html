@@ -67,8 +67,7 @@
             .section-content { page-break-before: avoid !important; break-before: avoid-page !important; }
             
             /* توسيط الخاتمة بالصفحة */
-            .conclusion-wrapper { height: 250mm !important; display: flex !important; flex-direction: column !important; justify-content: center !important; }
-            
+            .conclusion-wrapper { height: 220mm !important; display: flex !important; flex-direction: column !important; justify-content: center !important; margin-top: 0 !important; padding-bottom: 30mm !important; }            
             a[href]:after { content: none !important; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
@@ -343,12 +342,12 @@
                             <div className="w-20 h-1.5 bg-brand-gold mx-auto rounded-full"></div>
                         </div>
 
-                        <h1 className="font-heading text-4xl md:text-5xl font-black text-brand-navyLight mb-10 leading-tight">ملف الإنجاز المهني المتكامل</h1>
+                        <h1 className="font-heading text-4xl md:text-5xl font-black text-brand-navyLight mb-10 leading-tight">ملف الإنجاز المهني </h1>
                         
                         <div className="bg-brand-accent p-6 rounded-2xl border border-gray-200 mb-10 inline-block w-full max-w-md shadow-sm">
                             <h3 className="text-sm font-bold text-gray-500 mb-2 uppercase tracking-wide">إعداد المعلمة</h3>
                             <h2 className="text-3xl font-black text-brand-navy mb-3">ندى محمد المجيرش</h2>
-                            <p className="text-base font-black text-brand-gold">معلمة الفيزياء | NE231009</p>
+                            <p className="text-base font-black text-brand-gold">معلمة مادة الفيزياء | NE231009</p>
                         </div>
 
                         <div className="text-right mt-4 p-6 bg-white border-r-4 border-brand-navy rounded-xl shadow-sm">
@@ -372,7 +371,7 @@
 
                     <div className="print-flow relative z-10 space-y-10">
                         {portfolioData.map((category, idx) => (
-                            <div key={idx} className="mb-10">
+                            <div key={idx} className="mb-10 avoid-break">
                                 <div className="section-header flex items-center gap-4 mb-6">
                                     <div className="icon-circle">
                                         {category.icon}
